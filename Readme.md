@@ -156,7 +156,7 @@ where
 * `.fluid` is a theme
 
 Holy Grail layout example borrowed from http://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
-```
+```html
   <body class="holygrail">
     <header class="holygrail-header">…</header>
     <div class="holygrail-body">
@@ -171,7 +171,7 @@ Holy Grail layout example borrowed from http://philipwalton.github.io/solved-by-
 #### Component
 
 A concrete table extending abstract one
-```
+```html
   <table class="table table-leaderboard">
   ...
   </table>
@@ -181,7 +181,7 @@ where
 * `.table-leaderboard` is a subclass (concrete table).
 
 A search form of [Boostrap](http://getbootstrap.com/css/#forms)-like markup
-```
+```html
 <form class="form form-nav form-nav-search">
   <div class="form-group has-success">
     <label for="search_form_email">Email address</label>
@@ -199,7 +199,7 @@ where
 #### Element
 
 Tag-agnostic buttons.
-```
+```html
   <a class="btn btn-primary" href="#" role="button">Link</a>
   <button class="btn btn-primary" type="submit">Button</button>
   <input class="btn btn-primary" disabled type="submit" value="Submit">
@@ -214,7 +214,7 @@ where
 #### Context-dependent state
 
 Do not declare a base style for states like `.is-hidden` otherwise you will need to override styles in particular contexts
-```
+```html
 /* Not displayed  */
 .context-foo > .is-hidden {
  display: none;
