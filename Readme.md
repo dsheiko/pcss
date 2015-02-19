@@ -39,15 +39,15 @@ CCSS Abstraction
 -------
 PCSS is a [Component CSS](http://www.sitepoint.com/introducing-ccss-component-css/) approach that arranges style rules in the following types:
 
-![](images/component-elements.png)
+![](images/taxonomy.png)
 
-|Type|Description|
-|--|--|
-|Layout |Layout specifies the arrangement of elements on a page or in a section.|
-|Component|Component is a small and reusable module of UI, e.i. navigation bar, panel, form.|
-|Element |Element is an atomic building block such as button or field that designed to be easily ported across components.|
-|Theme   |Theme type is reserved for classes alternating existing entity (layout/component/element) like `.table.stripped`, `.form.inline`.|
-|State   |State classes are meant to represent an entity state: `is-selected`, `is-hidden`, `.has-error`.|
+Type|Description
+----|----
+Layout |Layout specifies the arrangement of elements on a page or in a section.
+Component|Component is a small and reusable module of UI, e.i. navigation bar, panel, form.
+Element |Element is an atomic building block such as button or field that designed to be easily ported across components.
+Theme   |Theme type is reserved for classes alternating existing entity (layout/component/element) like `.table.stripped`, `.form.inline`.
+State   |State classes are meant to represent an entity state: `is-selected`, `is-hidden`, `.has-error`.
 
 While styling a new UI, start with elements, then do components and at last layouts. thus you you ensure portability of your styles.
 
@@ -61,12 +61,12 @@ Similarly classes reflect the hierarchy of a type and source file location (e.g.
 The component source is located in  `Component/Form/Nav/Search` [File Structure](#a-fs))
 State classes prefixed with is- or has- (e.g. `.is-hidden`, `.has-success`).
 
-|Type|Selector|
-|--|--|
-|Layout/Component/Element |.noun {},.adjective-noun{}|
-|Layout/Component/Element child |.type > .type-noun {}|
-|State |.type.is-state {}, .type.has-state {}|
-|Theme |.type.adjective {}, .type[attribute] {}|
+Type|Selector
+----|----
+Layout/Component/Element |.noun {},.adjective-noun{}
+Layout/Component/Element child |.type > .type-noun {}
+State |.type.is-state {}, .type.has-state {}
+Theme |.type.adjective {}, .type[attribute] {}
 
 Further readings
 * [Modular CSS naming conventions](http://thesassway.com/advanced/modular-css-naming-conventions)
