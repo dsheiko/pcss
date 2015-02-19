@@ -135,7 +135,6 @@ Further Reading
 * [Code smells in CSS](http://csswizardry.com/2012/11/code-smells-in-css/)
 
 
-
 <a id="a-ex"></a>
 Examples
 -------
@@ -214,7 +213,7 @@ where
 #### Context-dependent state
 
 Do not declare a base style for states like `.is-hidden` otherwise you will need to override styles in particular contexts
-```html
+```css
 /* Not displayed  */
 .context-foo > .is-hidden {
  display: none;
