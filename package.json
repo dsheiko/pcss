@@ -1,0 +1,30 @@
+{
+    "name": "pcss",
+    "title": "PCSS",
+    "description": "Guidelines for writing scalable and maintainable style-sheets",
+    "version": "0.1.0",
+    "author": {
+        "name": "Dmitry Sheiko",
+        "url": "http://dsheiko.com"
+    },
+    "main": "./Readme.md",
+    "licenses": [
+      {
+          "type": "MIT",
+          "url": "http://github.com/fawek/codepainter/raw/master/LICENSE"
+      }
+    ],
+    "maintainers": [
+    {
+        "name": "Dmitry Sheiko",
+        "email": "me@dsheiko.com",
+        "web": "http://dsheiko.com"
+    }
+    ],
+    "repositories": [
+    {
+        "type": "git",
+        "url": "https://github.com/dsheiko/pcss.git"
+    }
+    ]
+}
