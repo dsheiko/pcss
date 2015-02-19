@@ -143,7 +143,7 @@ Examples
 #### Layout
 
 Generic grid layout
-```
+```html
   <div class="grid fluid">
     <div class="grid-row">
       <div class="grid-span2"></div>
