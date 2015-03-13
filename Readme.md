@@ -51,6 +51,16 @@ State   |State classes are meant to represent an entity state: `is-selected`, `i
 
 While styling a new UI, start with elements, then do components and at last layouts. thus you you ensure portability of your styles.
 
+## Elements
+![Elements](images/elements.png)
+<br />
+## Components
+![Components](images/components.png)
+<br />
+## Themes
+![Themes](images/themes.png)
+
+
 <a id="a-nc"></a>
 Naming Conventions
 -------
