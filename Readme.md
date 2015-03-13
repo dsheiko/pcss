@@ -54,11 +54,11 @@ While styling a new UI, start with elements, then do components and at last layo
 ## Elements
 ![Elements](images/elements.png)
 <br />
-## Components
-![Components](images/components.png)
-<br />
 ## Themes
 ![Themes](images/themes.png)
+<br />
+## Components
+![Components](images/components.png)
 
 
 <a id="a-nc"></a>
