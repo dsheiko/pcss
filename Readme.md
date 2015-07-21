@@ -5,7 +5,7 @@ PCSS
 [SMACSS](https://smacss.com/), [RSCSS](https://github.com/rstacruz/rscss/) and [OOCSS](http://oocss.org/).
 
 # Contents
-* [Common Principles](#a-cp)
+* [Objectives](#a-cp)
 * [CCSS Abstraction](#a-abs)
 * [Naming Conventions](#a-nc)
 * [File Structure](#a-fs)
@@ -13,8 +13,17 @@ PCSS
 * [Examples](#a-ex)
 
 <a id="a-cp"></a>
-Common Principles
+Objectives
 -------
+
+* Low coupling
+* High cohesion
+* Tag Independence
+* Location Independence
+* OCP
+
+
+designed to make the code adhere these...
 
 ### Modularity
 
@@ -34,22 +43,94 @@ Avoid long selectors with descendant/child combinators (.feed nav ul li h2).
 Long selectors besides harmful affect on selector performance mean that style rule-set is tied to particular
 location in the DOM. Independent selectors allow us to move components around our markup more freely.
 
+
+
 <a id="a-abs"></a>
 CCSS Abstraction
 -------
 PCSS is a [Component CSS](http://www.sitepoint.com/introducing-ccss-component-css/) approach that arranges style rules in the following types:
 
-![](images/taxonomy.png)
+
+## Component
+Class | Location
+----|----
+`.foo` | ./Component/_foo.scss
+
+Component is a reusable module of UI, e.i. navigation bar, panel, form. Normally component consists of a container element
+and auxiliary elements. Those elements are integral parts of the component that build the component and cannot be reused outside of component scope.
+
+### Component Part
+Class | Location
+----|----
+`.foo-bar` | ./Component/_foo.scss
+
+
+### Component Extension
+Class | Location
+----|----
+`.foo-baz` | ./Component/Foo/_baz.scss
+
+Following OOP practices, for a concrete component we need an abstract type and concrete one, which inherits from the abstract.
+For example, when we are required of a dialog window, we create `./Component/_dialog.scss` where put the base styles for
+any dialogs that we can have within the application. Then we compose `./Component/Dialog/_alert.scss` where set the extending styles
+for the concrete modal window. Now we refer to a concrete component in the HTML like that:
+
+```
+<div class="dialog dialog-alert">..</div>
+<div class="dialog dialog-prompt">..</div>
+```
+
+## Element
+Class | Location
+----|----
+`.foo-bar` | ./Element/_foo.scss
+
+Element is an atomic building block such as button or field that designed to be easily ported across components.
+Unlike a component, an element usually has no constituents.
+
+### Element Extension
+Class | Location
+----|----
+`.foo-baz` | ./Element/Foo/_baz.scss
+
+Similar to Component, Element assumes abstract type and extending types. Handy example here would be a button element.
+
+```
+<div class="btn btn-primary">..</div>
+<div class="btn btn-secondary btn-secondary-light">..</div>
+```
+
+## Base
+_base.scss
+_definitions.scss
+Mixin/_foo.scss
+
+
+## Layout
+
+Class | Location
+----|----
+`.l-foo` | ./Layout/_foo.scss
+
+Layout specifies the arrangement of elements on a page or in a section.
+
+
+
+## State
+State classes are meant to represent an entity state: `is-selected`, `is-hidden`, `.has-error`.
+
+
 
 Type|Description
 ----|----
-Layout |Layout specifies the arrangement of elements on a page or in a section.
-Component|Component is a small and reusable module of UI, e.i. navigation bar, panel, form.
-Element |Element is an atomic building block such as button or field that designed to be easily ported across components.
+
+
 Theme   |Theme type is reserved for classes alternating existing entity (layout/component/element) like `.table.stripped`, `.form.inline`.
-State   |State classes are meant to represent an entity state: `is-selected`, `is-hidden`, `.has-error`.
+State   |
 
 While styling a new UI, start with elements, then do components and at last layouts. thus you you ensure portability of your styles.
+
+
 
 ## Elements
 ![Elements](images/elements.png)
