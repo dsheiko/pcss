@@ -46,10 +46,8 @@ location in the DOM. Independent selectors allow us to move components around ou
 
 
 <a id="a-abs"></a>
-CCSS Abstraction
+Abstraction
 -------
-PCSS is a [Component CSS](http://www.sitepoint.com/introducing-ccss-component-css/) approach that arranges style rules in the following types:
-
 
 ## Component
 Class | Location
@@ -80,6 +78,47 @@ for the concrete modal window. Now we refer to a concrete component in the HTML 
 <div class="dialog dialog-prompt">..</div>
 ```
 
+### Component Theme
+Class | Location
+----|----
+`theme-baz .foo` | ./Component/_foo.scss
+
+Theme is a modifier class that is usually set on body or html element. The styles alternating the
+component depending on a given theme are kept in the same files with abstract and concrete components. Here the best practices would
+to automate theming:
+
+```
+@mixin theme-dialog($theme) {
+  $bg: get-theme-style($theme, "bg");
+  .theme-#{$theme} .dialog {
+    background-color: #{$bg};
+  }
+}
+@each $theme in $themes {
+  @include theme-dialog($theme);
+}
+```
+
+Where we have in `./Base/_defenitions.scss`:
+```
+$themes: baz qux;
+@function get-theme-style($theme, $key) {
+  $baz-map: (
+    "bg": $baz-bg
+  }
+  $qux-map: (
+    "bg": $qux-bg
+  }
+  @if $theme == "baz" {
+    @return map-get( $baz-map, $key );
+  }
+  @if $theme == "qux" {
+    @return map-get( $qux-map, $key );
+  }
+  @return map-get( $baz-map, $key );
+}
+```
+
 ## Element
 Class | Location
 ----|----
@@ -100,19 +139,36 @@ Similar to Component, Element assumes abstract type and extending types. Handy e
 <div class="btn btn-secondary btn-secondary-light">..</div>
 ```
 
-## Base
-_base.scss
-_definitions.scss
-Mixin/_foo.scss
-
-
 ## Layout
 
 Class | Location
 ----|----
 `.l-foo` | ./Layout/_foo.scss
 
-Layout specifies the arrangement of elements on a page or in a section.
+Layout specifies how the components are arranged in a given context.
+
+### Layout Extension
+Class | Location
+----|----
+`.l-foo-baz` | ./Layout/Foo/_baz.scss
+
+
+### Layout Theme
+Class | Location
+----|----
+`.theme-baz .l-foo` | ./Layout/_foo.scss
+
+
+
+
+
+
+## Base
+_base.scss
+_definitions.scss
+Mixin/_foo.scss
+
+
 
 
 
