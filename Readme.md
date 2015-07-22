@@ -1,5 +1,4 @@
-PCSS
-=====
+# PCSS
 
 **Pragmatic CSS** is my guidelines for writing scalable and maintainable style-sheets. The concept is heavily based on
 [SMACSS](https://smacss.com/), [RSCSS](https://github.com/rstacruz/rscss/) and [OOCSS](http://oocss.org/).
@@ -13,8 +12,8 @@ PCSS
 * [Examples](#a-ex)
 
 <a id="a-cp"></a>
-Objectives
--------
+
+## Objectives
 
 ### Modularity
 
@@ -39,24 +38,25 @@ Predictable
 where what
 
 <a id="a-abs"></a>
-Abstraction
+## PCSS Modules
 -------
 
-## Component
+### Component
 Class | Location
 ----|----
 `.foo` | ./Component/_foo.scss
 
-Component is a reusable module of UI, e.i. navigation bar, panel, form. Normally component consists of a container element
+Component is a reusable module of UI, e.i. `menu`, `panel`, `toolbar`, `dialog`, `slider`, `form`. Normally component consists of a container element
 and auxiliary elements. Those elements are integral parts of the component that build the component and cannot be reused outside of component scope.
 
-### Component Part
+
+#### Component Part
 Class | Location
 ----|----
 `.foo-bar` | ./Component/_foo.scss
 
 
-### Component Extension
+#### Component Extension
 Class | Location
 ----|----
 `.foo-baz` | ./Component/Foo/_baz.scss
@@ -71,7 +71,20 @@ for the concrete modal window. Now we refer to a concrete component in the HTML 
 <div class="dialog dialog-prompt">..</div>
 ```
 
-### Component Theme
+#### Composite Component
+Class | Location
+----|----
+`.foo` | ./Component/_foo.scss
+`.bar` | ./Component/_bar.scss
+
+By adding a compatible component class to HTML element we can enhance its styles. For example, we set `panel`
+class on an element to make it looking accordingly.
+Then we add `scrollbar` class that sets `overflow` CSS property and custom scrollbar styling.
+```
+<div class="panel scrollbar">..</div>
+```
+
+#### Component Theme
 Class | Location
 ----|----
 `theme-baz .foo` | ./Component/_foo.scss
@@ -112,7 +125,30 @@ $themes: baz qux;
 }
 ```
 
-## Element
+
+#### Component Example
+
+```
+<div class="dialog">
+  <h2>Header</h2>
+  <div class="dialog-main scrollbar">
+    Lorem ipsum...
+  </div>
+  <div class="dialog-toolbar">
+    <button class="btn">Cancel</button>
+    <button class="btn btn-primary">Cancel</button>
+  </div>
+</div>
+```
+
+Here we use component `dialog` and its parts `dialog-main`, `dialog-toolbar`. Heading `H2` is also an integral part of
+the component and styles applied to it are not meant to be used anywhere outside that context.
+So we can sacrifice tag independence in this case for better code readability.
+In the component markup we also rely to another component `scrollbar` and element `button`
+
+
+
+### Element
 Class | Location
 ----|----
 `.foo-bar` | ./Element/_foo.scss
@@ -120,7 +156,7 @@ Class | Location
 Element is an atomic building block such as button or field that designed to be easily ported across components.
 Unlike a component, an element usually has no constituents.
 
-### Element Extension
+#### Element Extension
 Class | Location
 ----|----
 `.foo-baz` | ./Element/Foo/_baz.scss
@@ -132,7 +168,21 @@ Similar to Component, Element assumes abstract type and extending types. Handy e
 <div class="btn btn-secondary btn-secondary-light">..</div>
 ```
 
-## Layout
+#### Element Example
+
+```html
+  <a class="btn btn-primary" href="#" role="button">Link</a>
+  <button class="btn btn-primary" type="submit">Button</button>
+  <input class="btn btn-primary" disabled type="submit" value="Submit">
+```
+
+where
+* `.btn` is a base class (abstract button),
+* `.btn-primary` is a subclass (concrete button),
+* `.btn-primary[disabled]` is a state,
+
+
+### Layout
 
 Class | Location
 ----|----
@@ -140,33 +190,44 @@ Class | Location
 
 Layout specifies how the components are arranged in a given context.
 
-### Layout Extension
+#### Layout Extension
 Class | Location
 ----|----
 `.l-foo-baz` | ./Layout/Foo/_baz.scss
 
 
-### Layout Theme
+#### Layout Theme
 Class | Location
 ----|----
 `.theme-baz .l-foo` | ./Layout/_foo.scss
 
+#### Layout Example
+```html
+  <body class="holygrail">
+    <header class="holygrail-header">…</header>
+    <div class="holygrail-body">
+      <main class="holygrail-content">…</main>
+      <nav class="holygrail-nav">…</nav>
+      <aside class="holygrail-ads">…</aside>
+    </div>
+    <footer class="holygrail-footer">…</footer>
+  </body>
+```
 
 
 
 
+### State
+State classes are meant to represent an entity state: `is-selected`, `is-hidden`, `.has-error`.
 
-## Base
+
+
+### Base
 _base.scss
 _definitions.scss
 Mixin/_foo.scss
 
 
-
-
-
-## State
-State classes are meant to represent an entity state: `is-selected`, `is-hidden`, `.has-error`.
 
 
 
@@ -202,7 +263,7 @@ Reactive !important
 
 
 <a id="a-nc"></a>
-Naming Conventions
+# Naming Conventions
 -------
 
 Class name represents entity (layout/component/element) or variant (state/theme). Name for an entity constituent is built of
@@ -345,19 +406,6 @@ where
 * `.has-success` represents field state.
 
 
-#### Element
-
-Tag-agnostic buttons.
-```html
-  <a class="btn btn-primary" href="#" role="button">Link</a>
-  <button class="btn btn-primary" type="submit">Button</button>
-  <input class="btn btn-primary" disabled type="submit" value="Submit">
-```
-
-where
-* `.btn` is a base class (abstract button),
-* `.btn-primary` is a subclass (concrete button),
-* `.btn-primary[disabled]` is a theme for concrete button disabled state,
 
 
 #### Context-dependent state
