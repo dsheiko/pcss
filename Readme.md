@@ -16,34 +16,27 @@ PCSS
 Objectives
 -------
 
-* Low coupling
-* High cohesion
-* Tag Independence
-* Location Independence
-* OCP
-
-
-designed to make the code adhere these...
-
 ### Modularity
 
-A complex problem can be broken into simpler tasks. So the entire system becomes easier to debug, update and modify.
-Split the whole style-sheet code-base into multiple files so that every file represented a small and reusable module of UI.
+A complex problem can be broken into simpler tasks. So the entire system becomes easier to debug,
+update and modify. PCSS describes how divide the style-sheet code-base into multiple files
+so that every file represented a small and reusable unit of UI. Modules are expected to have
+low coupling and high cohesion.
 
 ### Reusability
 
-Style the components, not a page, so that you could apply once created style an infinite amount of times across the project.
-Do not repeat rules while styling, but leverage cascade or mix-in styles
+PCCS implies styling the components, not a page, so that you could apply once created style
+an infinite amount of times across the project.
 
-### Loose Coupling (Tag Independence)
-Avoid qualified selectors (prepended with tag). Thus you will gain additional agility in moving classes around components.
+### Testability
+In general modular programming assumes better testability. Modules are independent, so you can take
+any and test out of context. PCSS provides a .. where you can test separetly element, component and layout.
 
-### Loose Coupling (Location Independence)
-Avoid long selectors with descendant/child combinators (.feed nav ul li h2).
-Long selectors besides harmful affect on selector performance mean that style rule-set is tied to particular
-location in the DOM. Independent selectors allow us to move components around our markup more freely.
+Composable
+from lego bricks
 
-
+Predictable
+where what
 
 <a id="a-abs"></a>
 Abstraction
@@ -177,25 +170,35 @@ State classes are meant to represent an entity state: `is-selected`, `is-hidden`
 
 
 
-Type|Description
-----|----
+## Common principles
+
+Classes for styling, IDs and data-* attributes for binding JavaScript
+
+Qualified selectors
+
+div.header {..}
+
+reasons:
+They totally inhibit reusability on another element.
+They increase specificity.
+They increase browser workload
+
+Avoid Loose class names
+..
 
 
-Theme   |Theme type is reserved for classes alternating existing entity (layout/component/element) like `.table.stripped`, `.form.inline`.
-State   |
+### Loose Coupling (Tag Independence)
+Avoid qualified selectors (prepended with tag). Thus you will gain additional agility in moving classes around components.
 
-While styling a new UI, start with elements, then do components and at last layouts. thus you you ensure portability of your styles.
+### Loose Coupling (Location Independence)
+Avoid long selectors with descendant/child combinators (.feed nav ul li h2).
+Long selectors besides harmful affect on selector performance mean that style rule-set is tied to particular
+location in the DOM. Independent selectors allow us to move components around our markup more freely.
 
 
+Reactive !important
 
-## Elements
-![Elements](images/elements.png)
-<br />
-## Themes
-![Themes](images/themes.png)
-<br />
-## Components
-![Components](images/components.png)
+!important is fine. It’s fine and it’s a, well, important tool. However, !important should only be used in certain circumstances.
 
 
 <a id="a-nc"></a>
