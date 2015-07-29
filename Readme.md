@@ -1,62 +1,39 @@
-# PCSS
+PCSS
+=====
 
-**Pragmatic CSS** is my guidelines for writing scalable and maintainable style-sheets. The concept is heavily based on
+**Pragmatic CSS** is guidelines for writing scalable and maintainable style-sheets. PCSS divides the
+whole UI into portable and reusable units: components, elements and layouts, where units may have own
+states and depend on themes. Every UI unit is provided with a CSS (SASS/LESS/etc) module.
+PCSS naming convention makes it easier to locate a module corresponding to a problem and encourages developer
+on producing optimized CSS.
+The concept is heavily based on
 [SMACSS](https://smacss.com/), [RSCSS](https://github.com/rstacruz/rscss/) and [OOCSS](http://oocss.org/).
 
 # Contents
-* [Objectives](#a-cp)
-* [CCSS Abstraction](#a-abs)
-* [Naming Conventions](#a-nc)
+* [Abstraction](#a-abs)
 * [File Structure](#a-fs)
+* [Naming Conventions](#a-nc)
 * [Selector Conventions](#a-sc)
-* [Examples](#a-ex)
-
-<a id="a-cp"></a>
-
-## Objectives
-
-### Modularity
-
-A complex problem can be broken into simpler tasks. So the entire system becomes easier to debug,
-update and modify. PCSS describes how divide the style-sheet code-base into multiple files
-so that every file represented a small and reusable unit of UI. Modules are expected to have
-low coupling and high cohesion.
-
-### Reusability
-
-PCCS implies styling the components, not a page, so that you could apply once created style
-an infinite amount of times across the project.
-
-### Testability
-In general modular programming assumes better testability. Modules are independent, so you can take
-any and test out of context. PCSS provides a .. where you can test separetly element, component and layout.
-
-Composable
-from lego bricks
-
-Predictable
-where what
 
 <a id="a-abs"></a>
-## PCSS Modules
+Abstraction
 -------
 
-### Component
+## Component
 Class | Location
 ----|----
 `.foo` | ./Component/_foo.scss
 
-Component is a reusable module of UI, e.i. `menu`, `panel`, `toolbar`, `dialog`, `slider`, `form`. Normally component consists of a container element
+Component is a reusable module of UI, e.i. navigation bar, panel, form. Normally component consists of a container element
 and auxiliary elements. Those elements are integral parts of the component that build the component and cannot be reused outside of component scope.
 
-
-#### Component Part
+### Component Part
 Class | Location
 ----|----
 `.foo-bar` | ./Component/_foo.scss
 
 
-#### Component Extension
+### Component Extension
 Class | Location
 ----|----
 `.foo-baz` | ./Component/Foo/_baz.scss
@@ -71,27 +48,100 @@ for the concrete modal window. Now we refer to a concrete component in the HTML 
 <div class="dialog dialog-prompt">..</div>
 ```
 
-#### Composite Component
+
+## Element
 Class | Location
 ----|----
-`.foo` | ./Component/_foo.scss
-`.bar` | ./Component/_bar.scss
+`.foo-bar` | ./Element/_foo.scss
 
-By adding a compatible component class to HTML element we can enhance its styles. For example, we set `panel`
-class on an element to make it looking accordingly.
-Then we add `scrollbar` class that sets `overflow` CSS property and custom scrollbar styling.
-```
-<div class="panel scrollbar">..</div>
-```
+Element is an atomic building block such as button or field that designed to be easily ported across components.
+Unlike a component, an element usually has no constituents.
 
-#### Component Theme
+### Element Extension
 Class | Location
 ----|----
-`theme-baz .foo` | ./Component/_foo.scss
+`.foo-baz` | ./Element/Foo/_baz.scss
 
-Theme is a modifier class that is usually set on body or html element. The styles alternating the
-component depending on a given theme are kept in the same files with abstract and concrete components. Here the best practices would
-to automate theming:
+Similar to Component, Element assumes abstract type and extending types. Handy example here would be a button element.
+
+```
+<div class="btn btn-primary">..</div>
+<div class="btn btn-secondary btn-secondary-light">..</div>
+```
+
+## Layout
+
+Class | Location
+----|----
+`.l-foo` | ./Layout/_foo.scss
+
+Layout specifies how the components are arranged in a given context.
+
+### Layout Extension
+Class | Location
+----|----
+`.l-foo-baz` | ./Layout/Foo/_baz.scss
+
+
+### Layout Theme
+Class | Location
+----|----
+`.theme-baz .l-foo` | ./Layout/_foo.scss
+
+
+## State
+State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hidden`, `.has-error`.
+
+```html
+<div class="l-main has-error">
+<aside class="sidebar is-hidden">...</aside>
+</div>
+```
+**./Layout/_main.scss**
+```css
+.l-main {
+  /* default style */
+  &.has-error {
+    /* state modified style */
+  }
+}
+```
+**./State/_global.scss**
+```css
+/* Global state */
+.is-hidden {
+  display: none !important;
+}
+```
+
+
+
+## Theme
+Theme classes used to alternate the style of an existing UI unit (layout/component/element)
+depending on the context.
+
+```html
+<html class="theme-foo">
+  <div class="l-main">
+  <aside class="sidebar">...</aside>
+  </div>
+</html>
+```
+
+**./Component/_sidebar.scss**
+```css
+.sidebar {
+/* default style */
+}
+.theme-foo .sidebar {
+/* alterntive style */
+}
+```
+
+### Programmatic Theming
+
+If we need components to change styles according to a set theme (`.theme-baz` and
+`.theme-qux`), we can use a mixin like:
 
 ```
 @mixin theme-dialog($theme) {
@@ -126,162 +176,7 @@ $themes: baz qux;
 ```
 
 
-#### Component Example
 
-```
-<div class="dialog">
-  <h2>Header</h2>
-  <div class="dialog-main scrollbar">
-    Lorem ipsum...
-  </div>
-  <div class="dialog-toolbar">
-    <button class="btn">Cancel</button>
-    <button class="btn btn-primary">Cancel</button>
-  </div>
-</div>
-```
-
-Here we use component `dialog` and its parts `dialog-main`, `dialog-toolbar`. Heading `H2` is also an integral part of
-the component and styles applied to it are not meant to be used anywhere outside that context.
-So we can sacrifice tag independence in this case for better code readability.
-In the component markup we also rely to another component `scrollbar` and element `button`
-
-
-
-### Element
-Class | Location
-----|----
-`.foo-bar` | ./Element/_foo.scss
-
-Element is an atomic building block such as button or field that designed to be easily ported across components.
-Unlike a component, an element usually has no constituents.
-
-#### Element Extension
-Class | Location
-----|----
-`.foo-baz` | ./Element/Foo/_baz.scss
-
-Similar to Component, Element assumes abstract type and extending types. Handy example here would be a button element.
-
-```
-<div class="btn btn-primary">..</div>
-<div class="btn btn-secondary btn-secondary-light">..</div>
-```
-
-#### Element Example
-
-```html
-  <a class="btn btn-primary" href="#" role="button">Link</a>
-  <button class="btn btn-primary" type="submit">Button</button>
-  <input class="btn btn-primary" disabled type="submit" value="Submit">
-```
-
-where
-* `.btn` is a base class (abstract button),
-* `.btn-primary` is a subclass (concrete button),
-* `.btn-primary[disabled]` is a state,
-
-
-### Layout
-
-Class | Location
-----|----
-`.l-foo` | ./Layout/_foo.scss
-
-Layout specifies how the components are arranged in a given context.
-
-#### Layout Extension
-Class | Location
-----|----
-`.l-foo-baz` | ./Layout/Foo/_baz.scss
-
-
-#### Layout Theme
-Class | Location
-----|----
-`.theme-baz .l-foo` | ./Layout/_foo.scss
-
-#### Layout Example
-```html
-  <body class="holygrail">
-    <header class="holygrail-header">…</header>
-    <div class="holygrail-body">
-      <main class="holygrail-content">…</main>
-      <nav class="holygrail-nav">…</nav>
-      <aside class="holygrail-ads">…</aside>
-    </div>
-    <footer class="holygrail-footer">…</footer>
-  </body>
-```
-
-
-
-
-### State
-State classes are meant to represent an entity state: `is-selected`, `is-hidden`, `.has-error`.
-
-
-
-### Base
-_base.scss
-_definitions.scss
-Mixin/_foo.scss
-
-
-
-
-
-## Common principles
-
-Classes for styling, IDs and data-* attributes for binding JavaScript
-
-Qualified selectors
-
-div.header {..}
-
-reasons:
-They totally inhibit reusability on another element.
-They increase specificity.
-They increase browser workload
-
-Avoid Loose class names
-..
-
-
-### Loose Coupling (Tag Independence)
-Avoid qualified selectors (prepended with tag). Thus you will gain additional agility in moving classes around components.
-
-### Loose Coupling (Location Independence)
-Avoid long selectors with descendant/child combinators (.feed nav ul li h2).
-Long selectors besides harmful affect on selector performance mean that style rule-set is tied to particular
-location in the DOM. Independent selectors allow us to move components around our markup more freely.
-
-
-Reactive !important
-
-!important is fine. It’s fine and it’s a, well, important tool. However, !important should only be used in certain circumstances.
-
-
-<a id="a-nc"></a>
-# Naming Conventions
--------
-
-Class name represents entity (layout/component/element) or variant (state/theme). Name for an entity constituent is built of
-parent class name and its own one (e.g. `.grid-row`, `.grid-span` where both are parts of `.grid`).
-Similarly classes reflect the hierarchy of a type and source file location (e.g. component `.form-nav-search` extends ``.form-nav` and `.form`.
-The component source is located in  `Component/Form/Nav/Search` [File Structure](#a-fs))
-State classes prefixed with is- or has- (e.g. `.is-hidden`, `.has-success`).
-
-Type|Selector
-----|----
-Layout/Component/Element |.noun {},.adjective-noun{}
-Layout/Component/Element child |.type > .type-noun {}
-State |.type.is-state {}, .type.has-state {}
-Theme |.type.adjective {}, .type[attribute] {}
-
-Further readings
-* [Modular CSS naming conventions](http://thesassway.com/advanced/modular-css-naming-conventions)
-* [Naming CSS Stuff Is Really Hard](http://seesparkbox.com/foundry/naming_css_stuff_is_really_hard)
 
 <a id="a-fs"></a>
 File Structure
@@ -321,6 +216,33 @@ Styles
 
 ```
 
+
+<a id="a-nc"></a>
+Naming Conventions
+-------
+
+Class name represents UI unit (layout/component/element) or variant (state/theme).
+Name for a unit part is built of
+parent class name and its own one (e.g. `.grid-row`, `.grid-span` where both are parts of `.grid`).
+Similarly classes reflect the hierarchy of a type and source file location (e.g.
+component `.form-nav-search` extends ``.form-nav` and `.form`.
+The component source is located in  `Component/Form/Nav/Search` [File Structure](#a-fs))
+State classes prefixed with `is-` or `has-` (e.g. `.is-hidden`, `.has-success`). Theme classes
+prefixed with `theme-`.
+
+Type|Selector
+----|----
+Layout/Component/Element |.noun {},.adjective-noun{}
+Layout/Component/Element child |.type > .type-noun {}
+State |.type.is-state {}, .type.has-state {}
+Theme |.type.adjective {}, .type[attribute] {}
+
+Further readings
+* [Modular CSS naming conventions](http://thesassway.com/advanced/modular-css-naming-conventions)
+* [Naming CSS Stuff Is Really Hard](http://seesparkbox.com/foundry/naming_css_stuff_is_really_hard)
+
+
+
 <a id="a-sc"></a>
 Selector Conventions
 -------
@@ -340,92 +262,18 @@ for a better separation of concerns. When you use only classes for styling and k
 JavaScript binding you get much more flexibility in moving styles across the document.
 
 
+### Loose Coupling (Tag Independence)
+Avoid qualified selectors (prepended with tag). Thus you will gain additional agility in moving classes around components.
+
+### Loose Coupling (Location Independence)
+Avoid long selectors with descendant/child combinators (.feed nav ul li h2).
+Long selectors besides harmful affect on selector performance mean that style rule-set is tied to particular
+location in the DOM. Independent selectors allow us to move components around our markup more freely.
+
+
 Further Reading
 
 * [When using IDs can be a pain in the class...](http://csswizardry.com/2011/09/when-using-ids-can-be-a-pain-in-the-class/)
 * [Code smells in CSS](http://csswizardry.com/2012/11/code-smells-in-css/)
-
-
-<a id="a-ex"></a>
-Examples
--------
-
-#### Layout
-
-Generic grid layout
-```html
-  <div class="grid fluid">
-    <div class="grid-row">
-      <div class="grid-span2"></div>
-    </div>
-  </div>
-```
-where
-* `.grid` is a layout,
-* `.grid-row` and `.grid-span2` layout children,
-* `.fluid` is a theme
-
-Holy Grail layout example borrowed from http://philipwalton.github.io/solved-by-flexbox/demos/holy-grail/
-```html
-  <body class="holygrail">
-    <header class="holygrail-header">…</header>
-    <div class="holygrail-body">
-      <main class="holygrail-content">…</main>
-      <nav class="holygrail-nav">…</nav>
-      <aside class="holygrail-ads">…</aside>
-    </div>
-    <footer class="holygrail-footer">…</footer>
-  </body>
-```
-
-#### Component
-
-A concrete table extending abstract one
-```html
-  <table class="table table-leaderboard">
-  ...
-  </table>
-```
-where
-* `.table` is a base class (abstract table),
-* `.table-leaderboard` is a subclass (concrete table).
-
-A search form of [Boostrap](http://getbootstrap.com/css/#forms)-like markup
-```html
-<form class="form form-nav form-nav-search">
-  <div class="form-group has-success">
-    <label for="search_form_email">Email address</label>
-    <input type="email" class="form-control" id="search_form_email" placeholder="Enter email">
-  </div>
-...
-</form>
-```
-where
-* `.form-nav-search` inherits from `form-nav` and from `.form`,
-* `.form-group` and `.form-control` are children of `form` base class and can be augmented for `.form-nav-search`,
-* `.has-success` represents field state.
-
-
-
-
-#### Context-dependent state
-
-Do not declare a base style for states like `.is-hidden` otherwise you will need to override styles in particular contexts
-```css
-/* Not displayed  */
-.context-foo > .is-hidden {
- display: none;
-}
-/* Visually hidden */
-.context-bar > .is-hidden {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px; width: 1px;
-  margin: -1px; padding: 0; border: 0;
-}
-```
-JavaScript shall not care about implementation details, it simply toggles the state.
-
 
 [![Analytics](https://ga-beacon.appspot.com/UA-1150677-13/dsheiko/pcss)](http://githalytics.com/dsheiko/pcss)
