@@ -11,7 +11,7 @@ The concept is heavily based on
 
 # Contents
 * [Abstraction](#a-abs)
-* [File Structure](#a-fs)
+* [File Structure Example](#a-fs)
 * [Naming Conventions](#a-nc)
 * [Selector Conventions](#a-sc)
 
@@ -48,6 +48,23 @@ for the concrete modal window. Now we refer to a concrete component in the HTML 
 <div class="dialog dialog-prompt">..</div>
 ```
 
+### Component Example
+
+![](images/a-component.png)
+```html
+<div class="progressbar progressbar-big">
+	<output class="progressbar-status">
+		Install is 70% complete
+	</output>
+	<progress value="70" max="100"></progress>
+	<div class="progressbar-actions">
+		<div class="icon icon-pause">pause</div>
+		<div class="icon icon-play is-hidden">resume</div>
+	</div>
+</div>
+```
+
+
 
 ## Element
 Class | Location
@@ -69,6 +86,19 @@ Similar to Component, Element assumes abstract type and extending types. Handy e
 <div class="btn btn-secondary btn-secondary-light">..</div>
 ```
 
+### Element Example
+
+![](images/a-element.png)
+
+```html
+	<div class="btn btn-primary">OK</div>
+	<div class="btn btn-primary" disabled="">OK</div>
+	<div class="btn btn-secondary"> OK</div>
+	<div class="btn btn-secondary" disabled="">OK</div>
+```
+
+
+
 ## Layout
 
 Class | Location
@@ -87,6 +117,20 @@ Class | Location
 Class | Location
 ----|----
 `.theme-baz .l-foo` | ./Layout/_foo.scss
+
+### Layout Example
+
+![](images/a-layout.png)
+
+```html
+<div class="l-app">
+  <header class="l-app-header">
+   Baz
+  </header>
+  <aside class="l-app-aside">Foo</aside>
+  <div class="l-app-main">Bar</div>
+</div>
+```
 
 
 ## State
@@ -175,11 +219,33 @@ $themes: baz qux;
 }
 ```
 
+### Theme Example
 
+![](images/a-theme.png)
 
+```html
+<div class="theme-foo">
+  <article class="entry">
+    <h2 class="entry-heading">Lorem ipsum dolor</h2>
+    <time datetime="2008-02-14 20:00" class="entry-time">2 hours ago</time>
+  </article>
+  <article class="entry">
+    <h2 class="entry-heading">Lorem ipsum dolor</h2>
+    <time datetime="2008-02-14 20:00" class="entry-time">2 hours ago</time>
+  </article>
+  <article class="entry">
+    <h2 class="entry-heading">Lorem ipsum dolor</h2>
+    <time datetime="2008-02-14 20:00" class="entry-time">2 hours ago</time>
+  </article>
+</div>
+
+<div class="theme-bar">
+...
+</div>
+```
 
 <a id="a-fs"></a>
-File Structure
+File Structure Example
 -------
 
 ```
