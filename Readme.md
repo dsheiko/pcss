@@ -5,7 +5,7 @@ PCSS
 whole UI into portable and reusable units: components, elements and layouts, where units may have own
 states and depend on themes. Every UI unit is provided with a CSS (SASS/LESS/etc) module.
 PCSS naming convention makes it easier to locate a module corresponding to a problem and encourages developer
-on producing optimized CSS.
+on producing optimized object-oriented CSS.
 The concept is heavily based on
 [SMACSS](https://smacss.com/), [RSCSS](https://github.com/rstacruz/rscss/) and [OOCSS](http://oocss.org/).
 
