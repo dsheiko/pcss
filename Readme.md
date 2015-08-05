@@ -287,27 +287,20 @@ Styles
 Naming Conventions
 -------
 
-Class name represents UI unit (layout/component/element) or variant (state/theme).
-Name for a unit part is built of
-parent class name and its own one (e.g. `.grid-row`, `.grid-span` where both are parts of `.grid`).
-Similarly classes reflect the hierarchy of a type and source file location (e.g.
-component `.form-nav-search` extends ``.form-nav` and `.form`.
-The component source is located in  `Component/Form/Nav/Search` [File Structure](#a-fs))
-State classes prefixed with `is-` or `has-` (e.g. `.is-hidden`, `.has-success`). Theme classes
-prefixed with `theme-`.
+* Component or element has corresponding CSS class on the container HTML element (e.g. `progressbar`).
+* Layout's class name is always prefixed with "l-" (e.g. `l-foo`).
+* Class name of a part of component/layout is prefixed with the base name (e.g. `l-app-header` is a part of `l-app`).
+* CSS classes reflect the hierarchy of a type. For example, one shall read the composition `progressbar progressbar-big` as
+concrete component `progressbar-big` extends abstract component `progressbar`.
+* Class name also represents source location. Let's say styles for `form-nav-search` is expected in the file
+`Component/Form/Nav/_search.scss` [File Structure](#a-fs)).
+* State classes are prefixed with `is-` or `has-` (e.g. `.is-hidden`, `.has-success`).
+* Theme classes are prefixed with `theme-`.
 
-Type|Selector
-----|----
-Layout/Component/Element |.noun {},.adjective-noun{}
-Layout/Component/Element child |.type > .type-noun {}
-State |.type.is-state {}, .type.has-state {}
-Theme |.type.adjective {}, .type[attribute] {}
 
 Further readings
 * [Modular CSS naming conventions](http://thesassway.com/advanced/modular-css-naming-conventions)
 * [Naming CSS Stuff Is Really Hard](http://seesparkbox.com/foundry/naming_css_stuff_is_really_hard)
-
-
 
 <a id="a-sc"></a>
 Selector Conventions
