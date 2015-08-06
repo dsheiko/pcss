@@ -93,7 +93,7 @@ Similar to Component, Element assumes abstract type and extending types. Handy e
 ```html
 	<button class="btn btn-primary">OK</button>
 	<button class="btn btn-primary" disabled="">OK</button>
-	<a class="btn btn-secondary"> OK</a>
+	<a class="btn btn-secondary">OK</a>
 	<a class="btn btn-secondary" disabled="">OK</a>
 ```
 
