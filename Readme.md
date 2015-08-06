@@ -91,10 +91,10 @@ Similar to Component, Element assumes abstract type and extending types. Handy e
 ![](images/a-element.png)
 
 ```html
-	<div class="btn btn-primary">OK</div>
-	<div class="btn btn-primary" disabled="">OK</div>
-	<div class="btn btn-secondary"> OK</div>
-	<div class="btn btn-secondary" disabled="">OK</div>
+	<button class="btn btn-primary">OK</button>
+	<button class="btn btn-primary" disabled="">OK</button>
+	<a class="btn btn-secondary"> OK</a>
+	<a class="btn btn-secondary" disabled="">OK</a>
 ```
 
 
