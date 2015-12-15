@@ -1,5 +1,6 @@
 PCSS
 =====
+ver. 1.1.0
 
 **Pragmatic CSS** is guidelines for writing scalable and maintainable style-sheets. PCSS divides the
 whole UI into portable and reusable units: components, elements and layouts, where units may have own
@@ -30,13 +31,13 @@ and auxiliary elements. Those elements are integral parts of the component that 
 ### Component Part
 Class | Location
 ----|----
-`.foo-bar` | ./Component/_foo.scss
+`.foo__bar` | ./Component/_foo.scss
 
 
 ### Component Extension
 Class | Location
 ----|----
-`.foo-baz` | ./Component/Foo/_baz.scss
+`.foo--baz` | ./Component/Foo/_baz.scss
 
 Following OOP practices, for a concrete component we need an abstract type and concrete one, which inherits from the abstract.
 For example, when we are required of a dialog window, we create `./Component/_dialog.scss` where put the base styles for
@@ -44,22 +45,22 @@ any dialogs that we can have within the application. Then we compose `./Componen
 for the concrete modal window. Now we refer to a concrete component in the HTML like that:
 
 ```
-<div class="dialog dialog-alert">..</div>
-<div class="dialog dialog-prompt">..</div>
+<div class="dialog dialog--alert">..</div>
+<div class="dialog dialog--prompt">..</div>
 ```
 
 ### Component Example
 
 ![](images/a-component.png)
 ```html
-<div class="progressbar progressbar-big">
-	<output class="progressbar-status">
+<div class="progressbar progressbar--big">
+	<output class="progressbar__status">
 		Install is 70% complete
 	</output>
 	<progress value="70" max="100"></progress>
-	<div class="progressbar-actions">
-		<div class="icon icon-pause">pause</div>
-		<div class="icon icon-play is-hidden">resume</div>
+	<div class="progressbar__actions">
+		<div class="icon icon--pause">pause</div>
+		<div class="icon icon--play is-hidden">resume</div>
 	</div>
 </div>
 ```
@@ -77,13 +78,13 @@ Unlike a component, an element usually has no constituents.
 ### Element Extension
 Class | Location
 ----|----
-`.foo-baz` | ./Element/Foo/_baz.scss
+`.foo--baz` | ./Element/Foo/_baz.scss
 
 Similar to Component, Element assumes abstract type and extending types. Handy example here would be a button element.
 
 ```
-<div class="btn btn-primary">..</div>
-<div class="btn btn-secondary btn-secondary-light">..</div>
+<div class="btn btn--primary">..</div>
+<div class="btn btn--secondary btn--secondary-light">..</div>
 ```
 
 ### Element Example
@@ -91,10 +92,10 @@ Similar to Component, Element assumes abstract type and extending types. Handy e
 ![](images/a-element.png)
 
 ```html
-	<button class="btn btn-primary">OK</button>
-	<button class="btn btn-primary" disabled="">OK</button>
-	<a class="btn btn-secondary">OK</a>
-	<a class="btn btn-secondary" disabled="">OK</a>
+	<button class="btn btn--primary">OK</button>
+	<button class="btn btn--primary" disabled="">OK</button>
+	<a class="btn btn--secondary">OK</a>
+	<a class="btn btn--secondary" disabled="">OK</a>
 ```
 
 
@@ -110,10 +111,10 @@ Layout specifies how the components are arranged in a given context.
 ### Layout Extension
 Class | Location
 ----|----
-`.l-foo-baz` | ./Layout/Foo/_baz.scss
+`.l-foo--baz` | ./Layout/Foo/_baz.scss
 
 
-### Layout Theme
+### Layout Themed
 Class | Location
 ----|----
 `.theme-baz .l-foo` | ./Layout/_foo.scss
@@ -124,11 +125,11 @@ Class | Location
 
 ```html
 <div class="l-app">
-  <header class="l-app-header">
+  <header class="l-app__header">
    Baz
   </header>
-  <aside class="l-app-aside">Foo</aside>
-  <div class="l-app-main">Bar</div>
+  <aside class="l-app__aside">Foo</aside>
+  <div class="l-app__main">Bar</div>
 </div>
 ```
 
@@ -226,16 +227,16 @@ $themes: baz qux;
 ```html
 <div class="theme-foo">
   <article class="entry">
-    <h2 class="entry-heading">Lorem ipsum dolor</h2>
-    <time datetime="2008-02-14 20:00" class="entry-time">2 hours ago</time>
+    <h2 class="entry__heading">Lorem ipsum dolor</h2>
+    <time datetime="2008-02-14 20:00" class="entry__time">2 hours ago</time>
   </article>
   <article class="entry">
-    <h2 class="entry-heading">Lorem ipsum dolor</h2>
-    <time datetime="2008-02-14 20:00" class="entry-time">2 hours ago</time>
+    <h2 class="entry__heading">Lorem ipsum dolor</h2>
+    <time datetime="2008-02-14 20:00" class="entry__time">2 hours ago</time>
   </article>
   <article class="entry">
-    <h2 class="entry-heading">Lorem ipsum dolor</h2>
-    <time datetime="2008-02-14 20:00" class="entry-time">2 hours ago</time>
+    <h2 class="entry__heading">Lorem ipsum dolor</h2>
+    <time datetime="2008-02-14 20:00" class="entry__time">2 hours ago</time>
   </article>
 </div>
 
@@ -287,15 +288,24 @@ Styles
 Naming Conventions
 -------
 
-* Component or element has corresponding CSS class on the container HTML element (e.g. `progressbar`).
+* Component or element has corresponding CSS class on the container HTML element (e.g. `progressbar` or `.main-nav`).
 * Layout's class name is always prefixed with "l-" (e.g. `l-foo`).
-* Class name of a part of component/layout is prefixed with the base name (e.g. `l-app-header` is a part of `l-app`).
-* CSS classes reflect the hierarchy of a type. For example, one shall read the composition `progressbar progressbar-big` as
+* Class name of a part of component/layout is prefixed with the base name (e.g. `l-app__header` is a part of `l-app`).
+* Extending CSS classes are prefixed with base class name. For example, one shall read the composition `progressbar progressbar--big` as
 concrete component `progressbar-big` extends abstract component `progressbar`.
-* Class name also represents source location. Let's say styles for `form-nav-search` is expected in the file
+* Class name also represents source location. Let's say styles for `form-nav--search` is expected in the file
 `Component/Form/Nav/_search.scss` [File Structure](#a-fs)).
 * State classes are prefixed with `is-` or `has-` (e.g. `.is-hidden`, `.has-success`).
 * Theme classes are prefixed with `theme-`.
+
+Class | Entity
+----|----
+`.btn`, `.main-nav` | a component or an element (only hyphen delimited names)
+`.main-nav__title` | part of a component
+`.btn--primary`, `.main-nav--landing-page` | extension of an abstract component
+`.is-hidden`, `.has-success` | a state
+`.l-holygrail` | a layout
+`.theme-default`, `.theme-garland` | a theme
 
 
 Further readings

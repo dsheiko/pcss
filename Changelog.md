@@ -1,0 +1,1 @@
+* 1.1.0 - when having all the units, their parts and extensions as hyphen delimited names in the same manner, it's quite hard to distinguish where a CSS class belongs to. Now the spec borrows BEM conventions for parts and extensions (modifiers): `el-name__part` and `el-name--extension-name`
