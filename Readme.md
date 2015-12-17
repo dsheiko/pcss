@@ -36,7 +36,7 @@ Component consists of elements (e.g. `form__title`) and can be extended by subcl
 
 ![](images/a-component-diagram.png)
 
-### Element
+#### Element
 Class | Location
 ----|----
 `.panel__header` | `./Component/_panel.scss`
@@ -45,7 +45,7 @@ Component is built of elements. Elements is an integral parts of a component and
 cannot be reused outside of component scope.
 
 
-### Subclass
+#### Subclass
 Class | Location
 ----|----
 `.panel--primary` | ./Component/Panel/_primary.scss
@@ -60,12 +60,12 @@ for the concrete modal window. Now we refer to a concrete component in the HTML 
 <div class="dialog dialog--prompt">..</div>
 ```
 
-### Themed Component
+#### Themed Component
 Class | Location
 ----|----
 `.theme-halogen .foo` | `./Component/_foo.scss`
 
-### Component Example
+#### Component Example
 
 ![](images/a-component.png)
 
@@ -139,18 +139,18 @@ Class | Location
 
 Layout specifies how the components are arranged in a given context.
 
-### Subclass
+#### Subclass
 Class | Location
 ----|----
 `.l-app--home` | ./Layout/App/_home.scss
 
 
-### Themed Layout
+#### Themed Layout
 Class | Location
 ----|----
 `.theme-halogen .l-app` | ./Layout/_app.scss
 
-### Layout Example
+#### Layout Example
 
 ![](images/a-layout.png)
 
@@ -247,7 +247,7 @@ depending on the context.
 }
 ```
 
-### Programmatic Theming
+#### Programmatic Theming
 
 If we need components to change styles according to a set theme (`.theme-baz` and
 `.theme-qux`), we can use a mixin like:
@@ -284,7 +284,7 @@ $themes: baz qux;
 }
 ```
 
-### Theme Example
+#### Theme Example
 
 ![](images/a-theme.png)
 
@@ -363,7 +363,7 @@ Class | Entity
 `.theme-default`, `.theme-garland` | a theme
 
 
-Further readings
+##### Further readings
 * [Modular CSS naming conventions](http://thesassway.com/advanced/modular-css-naming-conventions)
 * [Naming CSS Stuff Is Really Hard](http://seesparkbox.com/foundry/naming_css_stuff_is_really_hard)
 
