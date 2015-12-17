@@ -52,12 +52,14 @@ for the concrete modal window. Now we refer to a concrete component in the HTML 
 ### Component Example
 
 ![](images/a-component.png)
+
+##### HTML
 ```html
 <div class="progressbar progressbar--big">
 	<output class="progressbar__status">
 		Install is 70% complete
 	</output>
-	<progress value="70" max="100"></progress>
+	<progress class="progressbar__progress" value="70" max="100"></progress>
 	<div class="progressbar__actions">
 		<div class="icon icon--pause">pause</div>
 		<div class="icon icon--play is-hidden">resume</div>
@@ -65,7 +67,42 @@ for the concrete modal window. Now we refer to a concrete component in the HTML 
 </div>
 ```
 
+##### ./Component/_progressbar.scss
+```sass
+.progressbar {
+  position: relative;
+}
+.progressbar__progress {
+  border: 0;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  appearance: none;
+  &::-webkit-progress-bar {/*..*/ }
+  &::-webkit-progress-value {/*..*/ }
+  &::-moz-progress-bar {/*..*/ }
+}
+.progressbar__status {
+  display: flex;
+  position: relative;
+  font-size: 1rem;
+}
+.progressbar__actions {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  > .icon { /*..*/ }
+}
+```
 
+##### ./Component/Progressbar/_big.scss
+```sass
+.progressbar--big > .progressbar__status {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+```
 
 ## Element
 Class | Location
@@ -91,6 +128,7 @@ Similar to Component, Element assumes abstract type and extending types. Handy e
 
 ![](images/a-element.png)
 
+##### HTML
 ```html
 	<button class="btn btn--primary">OK</button>
 	<button class="btn btn--primary" disabled="">OK</button>
@@ -98,6 +136,41 @@ Similar to Component, Element assumes abstract type and extending types. Handy e
 	<a class="btn btn--secondary" disabled="">OK</a>
 ```
 
+##### ./Element/_btn.scss
+```sass
+.btn {
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $font-bold;
+  text-align: center;
+  text-transform: uppercase;
+  outline: none;
+
+  &:active {
+    outline: none;
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+
+  &[disabled],
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+```
+
+##### ./Element/Btn/_primary.scss
+```sass
+.btn--primary {
+	width: auto;
+  padding: 5px 32px;
+	background-color: $c-primary;
+	font-size:1.4rem;
+  border: none;
+}
+```
 
 
 ## Layout
@@ -123,26 +196,57 @@ Class | Location
 
 ![](images/a-layout.png)
 
+##### HTML
 ```html
 <div class="l-app">
-  <header class="l-app__header">
+  <header>
    Baz
   </header>
-  <aside class="l-app__aside">Foo</aside>
-  <div class="l-app__main">Bar</div>
+  <div class="l-app__body">
+    <aside class="l-app__aside">Foo</aside>
+    <div class="l-app__main">Bar</div>
+  </div>
 </div>
+```
+
+##### ./Layout/_app.scss
+```sass
+.l-app {
+	display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.l-app__body {
+	flex-direction: row;
+  display: flex;
+  flex: 1;
+}
+.l-app__aside {
+  flex: 1 1 40%;
+}
+.l-app__main {
+  flex: 1 1 60%;
+}
+@media (max-width: 768px) {
+  .l-app__body {
+    flex-direction: column;
+    flex: 1;
+  }
+}
 ```
 
 
 ## State
 State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hidden`, `.has-error`.
 
+##### HTML
 ```html
 <div class="l-main has-error">
 <aside class="sidebar is-hidden">...</aside>
 </div>
 ```
-**./Layout/_main.scss**
+
+##### ./Layout/_main.scss
 ```css
 .l-main {
   /* default style */
@@ -151,7 +255,8 @@ State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hi
   }
 }
 ```
-**./State/_global.scss**
+
+##### ./State/_global.scss
 ```css
 /* Global state */
 .is-hidden {
@@ -165,6 +270,7 @@ State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hi
 Theme classes used to alternate the style of an existing UI unit (layout/component/element)
 depending on the context.
 
+##### HTML
 ```html
 <html class="theme-foo">
   <div class="l-main">
@@ -173,7 +279,7 @@ depending on the context.
 </html>
 ```
 
-**./Component/_sidebar.scss**
+##### ./Component/_sidebar.scss
 ```css
 .sidebar {
 /* default style */
