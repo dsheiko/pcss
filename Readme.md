@@ -164,10 +164,10 @@ Similar to Component, Element assumes abstract type and extending types. Handy e
 ##### ./Element/Btn/_primary.scss
 ```sass
 .btn--primary {
-	width: auto;
+  width: auto;
   padding: 5px 32px;
-	background-color: $c-primary;
-	font-size:1.4rem;
+  background-color: $c-primary;
+  font-size:1.4rem;
   border: none;
 }
 ```
@@ -212,12 +212,12 @@ Class | Location
 ##### ./Layout/_app.scss
 ```sass
 .l-app {
-	display: flex;
+  display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 .l-app__body {
-	flex-direction: row;
+  flex-direction: row;
   display: flex;
   flex: 1;
 }
@@ -294,7 +294,7 @@ depending on the context.
 If we need components to change styles according to a set theme (`.theme-baz` and
 `.theme-qux`), we can use a mixin like:
 
-```
+```sass
 @mixin theme-dialog($theme) {
   $bg: get-theme-style($theme, "bg");
   .theme-#{$theme} .dialog {
@@ -307,7 +307,7 @@ If we need components to change styles according to a set theme (`.theme-baz` an
 ```
 
 Where we have in `./Base/_defenitions.scss`:
-```
+```sass
 $themes: baz qux;
 @function get-theme-style($theme, $key) {
   $baz-map: (
