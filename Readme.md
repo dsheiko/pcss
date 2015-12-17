@@ -3,9 +3,8 @@ PCSS
 ver. 1.2.0
 
 **Pragmatic CSS** is guidelines for writing scalable and maintainable style-sheets. PCSS divides the
-whole UI into portable and reusable components and layouts, that may have own
-states and depend on themes. Every components and layout is provided with a CSS (SASS/LESS/etc) module.
-PCSS naming convention makes it easier to locate a module corresponding to a problem and encourages developer
+whole UI into **portable** and **reusable** components. Every component is described in a separate CSS (SASS/LESS/etc) module.
+PCSS's naming convention makes it easier to locate a module corresponding to a problem and encourages developer
 on producing optimized object-oriented CSS.
 
 PCSS doesn't reveal much unique, but extracts and combines the best parts of existing standards and practices.
