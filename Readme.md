@@ -16,13 +16,13 @@ from [OOCSS](http://oocss.org/), context-independent class names from
 
 
 # Contents
-* [Abstraction](#a-abs)
+* [Key concepts](#a-abs)
 * [File Structure Example](#a-fs)
 * [Naming Conventions](#a-nc)
 * [Selector Conventions](#a-sc)
 
 <a id="a-abs"></a>
-Abstraction
+Key concepts
 -------
 
 ## Component
