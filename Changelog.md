@@ -1,1 +1,2 @@
+* 1.2.0 - finalized vocabulary (component, element, subclass), ditched component/element separation (now element means a part of component)
 * 1.1.0 - when having all the units, their parts and extensions as hyphen delimited names in the same manner, it's quite hard to distinguish where a CSS class belongs to. Now the spec borrows BEM conventions for parts and extensions (modifiers): `el-name__part` and `el-name--extension-name`

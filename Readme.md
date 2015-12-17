@@ -1,14 +1,19 @@
 PCSS
 =====
-ver. 1.1.0
+ver. 1.2.0
 
 **Pragmatic CSS** is guidelines for writing scalable and maintainable style-sheets. PCSS divides the
-whole UI into portable and reusable units: components, elements and layouts, where units may have own
-states and depend on themes. Every UI unit is provided with a CSS (SASS/LESS/etc) module.
+whole UI into portable and reusable components and layouts, that may have own
+states and depend on themes. Every components and layout is provided with a CSS (SASS/LESS/etc) module.
 PCSS naming convention makes it easier to locate a module corresponding to a problem and encourages developer
 on producing optimized object-oriented CSS.
-The concept is heavily based on
-[SMACSS](https://smacss.com/), [RSCSS](https://github.com/rstacruz/rscss/) and [OOCSS](http://oocss.org/).
+
+PCSS doesn't reveal much unique, but extracts and combines the best parts of existing standards and practices.
+It borrows Base, State and Theme rules from [SMACSS](https://smacss.com/), element and subtype (modifier) naming conventions
+from  [BEM](https://en.bem.info), the idea of common OOP principles in CSS (inheritance, OCP, SRP)
+from [OOCSS](http://oocss.org/), context-independent class names from
+[Modular CSS naming conventions](http://thesassway.com/advanced/modular-css-naming-conventions)
+
 
 # Contents
 * [Abstraction](#a-abs)
@@ -23,31 +28,42 @@ Abstraction
 ## Component
 Class | Location
 ----|----
-`.foo` | ./Component/_foo.scss
+`.panel` | `./Component/_panel.scss`
+`.nav-bar` | `./Component/_nav-bar.scss`
 
-Component is a reusable module of UI, e.i. navigation bar, panel, form. Normally component consists of a container element
-and auxiliary elements. Those elements are integral parts of the component that build the component and cannot be reused outside of component scope.
+**Component** is a reusable module of UI (e.g. `nav-bar`, `panel`, `form`).
+Component consists of elements (e.g. `form__title`) and can be extended by subclasses.
 
-### Component Part
+![](images/a-component-diagram.png)
+
+### Element
 Class | Location
 ----|----
-`.foo__bar` | ./Component/_foo.scss
+`.panel__header` | `./Component/_panel.scss`
+
+Component is built of elements. Elements is an integral parts of a component and
+cannot be reused outside of component scope.
 
 
-### Component Extension
+### Subclass
 Class | Location
 ----|----
-`.foo--baz` | ./Component/Foo/_baz.scss
+`.panel--primary` | ./Component/Panel/_primary.scss
 
-Following OOP practices, for a concrete component we need an abstract type and concrete one, which inherits from the abstract.
+Following OOP practices, we inherit from a base component to a its subclass
 For example, when we are required of a dialog window, we create `./Component/_dialog.scss` where put the base styles for
-any dialogs that we can have within the application. Then we compose `./Component/Dialog/_alert.scss` where set the extending styles
+any dialogs that we can have within the application. Then we add `./Component/Dialog/_alert.scss` where set the extending styles
 for the concrete modal window. Now we refer to a concrete component in the HTML like that:
 
 ```
 <div class="dialog dialog--alert">..</div>
 <div class="dialog dialog--prompt">..</div>
 ```
+
+### Themed Component
+Class | Location
+----|----
+`.theme-halogen .foo` | `./Component/_foo.scss`
 
 ### Component Example
 
@@ -99,98 +115,40 @@ for the concrete modal window. Now we refer to a concrete component in the HTML 
 ##### ./Component/Progressbar/_big.scss
 ```sass
 .progressbar--big > .progressbar__status {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   text-transform: uppercase;
+  padding: 16px;
 }
 ```
-
-## Element
-Class | Location
-----|----
-`.foo-bar` | ./Element/_foo.scss
-
-Element is an atomic building block such as button or field that designed to be easily ported across components.
-Unlike a component, an element usually has no constituents.
-
-### Element Extension
-Class | Location
-----|----
-`.foo--baz` | ./Element/Foo/_baz.scss
-
-Similar to Component, Element assumes abstract type and extending types. Handy example here would be a button element.
-
-```
-<div class="btn btn--primary">..</div>
-<div class="btn btn--secondary btn--secondary-light">..</div>
-```
-
-### Element Example
-
-![](images/a-element.png)
-
-##### HTML
-```html
-	<button class="btn btn--primary">OK</button>
-	<button class="btn btn--primary" disabled="">OK</button>
-	<a class="btn btn--secondary">OK</a>
-	<a class="btn btn--secondary" disabled="">OK</a>
-```
-
-##### ./Element/_btn.scss
+##### ./Component/Progressbar/_small.scss
 ```sass
-.btn {
-  border-radius: 2px;
-  cursor: pointer;
-  display: inline-block;
-  font-family: $font-bold;
-  text-align: center;
-  text-transform: uppercase;
-  outline: none;
-
-  &:active {
-    outline: none;
-    transform: scale(0.98);
-    opacity: 0.9;
-  }
-
-  &[disabled],
-  &:disabled {
-    opacity: 0.5;
-    cursor: default;
-  }
+.progressbar--small > .progressbar__status {
+  font-size: 1.1rem;
+  text-transform: lowercase;
+  padding: 11px;
 }
 ```
 
-##### ./Element/Btn/_primary.scss
-```sass
-.btn--primary {
-  width: auto;
-  padding: 5px 32px;
-  background-color: $c-primary;
-  font-size:1.4rem;
-  border: none;
-}
-```
 
 
 ## Layout
 
 Class | Location
 ----|----
-`.l-foo` | ./Layout/_foo.scss
+`.l-app` | ./Layout/_app.scss
 
 Layout specifies how the components are arranged in a given context.
 
-### Layout Extension
+### Subclass
 Class | Location
 ----|----
-`.l-foo--baz` | ./Layout/Foo/_baz.scss
+`.l-app--home` | ./Layout/App/_home.scss
 
 
-### Layout Themed
+### Themed Layout
 Class | Location
 ----|----
-`.theme-baz .l-foo` | ./Layout/_foo.scss
+`.theme-halogen .l-app` | ./Layout/_app.scss
 
 ### Layout Example
 
@@ -267,7 +225,7 @@ State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hi
 
 
 ## Theme
-Theme classes used to alternate the style of an existing UI unit (layout/component/element)
+Theme classes used to alternate the style of a component or a layout
 depending on the context.
 
 ##### HTML
@@ -346,7 +304,7 @@ $themes: baz qux;
   </article>
 </div>
 
-<div class="theme-bar">
+<div class="theme-halogen">
 ...
 </div>
 ```
@@ -378,11 +336,6 @@ Styles
 │   └───Mixin
 │           _media.scss
 │
-├───Element
-│   │   _btn.scss
-│   │
-│   └───Btn
-│           _primary.scss
 │
 └───Layout
         _grid.scss
@@ -394,21 +347,17 @@ Styles
 Naming Conventions
 -------
 
-* Component or element has corresponding CSS class on the container HTML element (e.g. `progressbar` or `.main-nav`).
-* Layout's class name is always prefixed with "l-" (e.g. `l-foo`).
-* Class name of a part of component/layout is prefixed with the base name (e.g. `l-app__header` is a part of `l-app`).
-* Extending CSS classes are prefixed with base class name. For example, one shall read the composition `progressbar progressbar--big` as
-concrete component `progressbar-big` extends abstract component `progressbar`.
-* Class name also represents source location. Let's say styles for `form-nav--search` is expected in the file
+* Class name represents source location. Let's say styles for `.form--nav--search` is expected in the file
 `Component/Form/Nav/_search.scss` [File Structure](#a-fs)).
+* Layout classes are prefixed with `l-`.
 * State classes are prefixed with `is-` or `has-` (e.g. `.is-hidden`, `.has-success`).
 * Theme classes are prefixed with `theme-`.
 
 Class | Entity
 ----|----
-`.btn`, `.main-nav` | a component or an element (only hyphen delimited names)
-`.main-nav__title` | part of a component
-`.btn--primary`, `.main-nav--landing-page` | extension of an abstract component
+`.btn`, `.main-nav` | a component (only hyphen delimited names)
+`.main-nav__title` | element (subcomponent)
+`.btn--primary`, `.main-nav--landing-page` | subclass
 `.is-hidden`, `.has-success` | a state
 `.l-holygrail` | a layout
 `.theme-default`, `.theme-garland` | a theme
@@ -446,7 +395,7 @@ Long selectors besides harmful affect on selector performance mean that style ru
 location in the DOM. Independent selectors allow us to move components around our markup more freely.
 
 
-Further Reading
+##### Further Reading
 
 * [When using IDs can be a pain in the class...](http://csswizardry.com/2011/09/when-using-ids-can-be-a-pain-in-the-class/)
 * [Code smells in CSS](http://csswizardry.com/2012/11/code-smells-in-css/)
