@@ -400,3 +400,4 @@ location in the DOM. Independent selectors allow us to move components around ou
 * [Code smells in CSS](http://csswizardry.com/2012/11/code-smells-in-css/)
 
 [![Analytics](https://ga-beacon.appspot.com/UA-1150677-13/dsheiko/pcss)](http://githalytics.com/dsheiko/pcss)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dsheiko/pcss/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
