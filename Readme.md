@@ -1,6 +1,6 @@
 PCSS
 =====
-ver. 1.2.0
+ver. 1.2.1
 
 **Pragmatic CSS** is guidelines for writing scalable and maintainable style-sheets. PCSS divides the
 whole UI into **portable** and **reusable** components. Every component is described in a separate CSS (SASS/LESS/etc) module.
@@ -130,69 +130,6 @@ Class | Location
 
 
 
-## Layout
-
-Class | Location
-----|----
-`.l-app` | ./Layout/_app.scss
-
-Layout specifies how the components are arranged in a given context.
-
-#### Subclass
-Class | Location
-----|----
-`.l-app--home` | ./Layout/App/_home.scss
-
-
-#### Themed Layout
-Class | Location
-----|----
-`.theme-halogen .l-app` | ./Layout/_app.scss
-
-#### Layout Example
-
-![](images/a-layout.png)
-
-##### HTML
-```html
-<div class="l-app">
-  <header>
-   Baz
-  </header>
-  <div class="l-app__body">
-    <aside class="l-app__aside">Foo</aside>
-    <div class="l-app__main">Bar</div>
-  </div>
-</div>
-```
-
-##### ./Layout/_app.scss
-```sass
-.l-app {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-.l-app__body {
-  flex-direction: row;
-  display: flex;
-  flex: 1;
-}
-.l-app__aside {
-  flex: 1 1 40%;
-}
-.l-app__main {
-  flex: 1 1 60%;
-}
-@media (max-width: 768px) {
-  .l-app__body {
-    flex-direction: column;
-    flex: 1;
-  }
-}
-```
-
-
 ## State
 State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hidden`, `.has-error`.
 
@@ -203,7 +140,7 @@ State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hi
 </div>
 ```
 
-##### ./Layout/_main.scss
+##### ./Component/_l-main.scss
 ```css
 .l-main {
   /* default style */
@@ -213,14 +150,13 @@ State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hi
 }
 ```
 
-##### ./State/_global.scss
+##### ./Base/_global-state.scss
 ```css
 /* Global state */
 .is-hidden {
   display: none !important;
 }
 ```
-
 
 
 ## Theme
@@ -316,6 +252,7 @@ File Structure Example
 Styles
 ├───Component
 │   │   _form.scss
+│   │   _l-holygrail.scss
 │   │
 │   └───Form
 │       │   _auth.scss
@@ -327,17 +264,16 @@ Styles
 │       └───Nav
 │               _search.scss
 │
-├───Base
-│   │   _h5b-normalize.scss
-│   │   _base.scss
-│   │   _definitions.scss
-│   │
-│   └───Mixin
-│           _media.scss
-│
-│
-└───Layout
-        _grid.scss
+└───Base
+    │   _h5b-normalize.scss
+    │   _base.scss
+    │   _definitions.scss
+    │   _global-state.scss
+    │   _animations.scss
+    │
+    └───Mixin
+            _media.scss
+
 
 ```
 
@@ -348,7 +284,7 @@ Naming Conventions
 
 * Class name represents source location. Let's say styles for `.form--nav--search` is expected in the file
 `Component/Form/Nav/_search.scss` [File Structure](#a-fs)).
-* Layout classes are prefixed with `l-`.
+* Layout component classes/source files are prefixed with `l-`.
 * State classes are prefixed with `is-` or `has-` (e.g. `.is-hidden`, `.has-success`).
 * Theme classes are prefixed with `theme-`.
 
@@ -358,7 +294,7 @@ Class | Entity
 `.main-nav__title` | element (subcomponent)
 `.btn--primary`, `.main-nav--landing-page` | subclass
 `.is-hidden`, `.has-success` | a state
-`.l-holygrail` | a layout
+`.l-holygrail` | a layout component
 `.theme-default`, `.theme-garland` | a theme
 
 
@@ -394,7 +330,26 @@ Long selectors besides harmful affect on selector performance mean that style ru
 location in the DOM. Independent selectors allow us to move components around our markup more freely.
 
 
-##### Further Reading
+## What''s wrong with BEM
+`BEM` introduces an excellent class naming convention. However they suggest to use Modifier both as component extension
+and as component state. Consider the following example:
+
+
+```
+<a class="btn btn--primary">OK</a>
+```
+Here we see a concrete button of type `primary` (`btn--primary`) that extends
+Subclass represents a component.
+
+```
+<a class="btn btn--primary is-hidden">OK</a>
+```
+`is-hidden` sets `primary` button in a particular state. State is
+usually set on component dynamically (e.g. by JavaScript).
+
+By distinguishing states and subclasses `PCSS` encourages for better code maintainability 
+
+## Further Reading
 
 * [When using IDs can be a pain in the class...](http://csswizardry.com/2011/09/when-using-ids-can-be-a-pain-in-the-class/)
 * [Code smells in CSS](http://csswizardry.com/2012/11/code-smells-in-css/)
