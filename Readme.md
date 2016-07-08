@@ -330,7 +330,7 @@ Long selectors besides harmful affect on selector performance mean that style ru
 location in the DOM. Independent selectors allow us to move components around our markup more freely.
 
 
-## What''s wrong with BEM
+## What's wrong with BEM?
 `BEM` introduces an excellent class naming convention. However they suggest to use Modifier both as component extension
 and as component state. Consider the following example:
 
@@ -347,7 +347,7 @@ Subclass represents a component.
 `is-hidden` sets `primary` button in a particular state. State is
 usually set on component dynamically (e.g. by JavaScript).
 
-By distinguishing states and subclasses `PCSS` encourages for better code maintainability 
+By distinguishing states and subclasses `PCSS` encourages for better code maintainability
 
 ## Further Reading
 
