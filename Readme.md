@@ -205,10 +205,10 @@ $themes: baz qux;
 @function get-theme-style($theme, $key) {
   $baz-map: (
     "bg": $baz-bg
-  }
+  );
   $qux-map: (
     "bg": $qux-bg
-  }
+  );
   @if $theme == "baz" {
     @return map-get( $baz-map, $key );
   }
