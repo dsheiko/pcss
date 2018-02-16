@@ -23,14 +23,12 @@ from [OOCSS](http://oocss.org/), context-independent class names from
 * [Naming Conventions](#a-nc)
 * [Selector Conventions](#a-sc)
 
-Key concepts
--------
 
 ## Component
 Class | Location
 ----|----
-`.panel` | `./Component/_panel.scss`
-`.nav-bar` | `./Component/_nav-bar.scss`
+`.panel` | `./component/panel/_index.scss`
+`.nav-bar` | `./component/nav-bar/_index.scss`
 
 **Component** is a reusable module of UI (e.g. `nav-bar`, `panel`, `form`).
 Component consists of elements (e.g. `form__title`) and can be extended by subclasses.
@@ -40,7 +38,7 @@ Component consists of elements (e.g. `form__title`) and can be extended by subcl
 ## Element
 Class | Location
 ----|----
-`.panel__header` | `./Component/_panel.scss`
+`.panel__header` | `./component/panel/_index.scss`
 
 Component is built of elements. Elements is an integral parts of a component and
 cannot be reused outside of component scope.
@@ -49,11 +47,11 @@ cannot be reused outside of component scope.
 ## Subclass
 Class | Location
 ----|----
-`.panel--primary` | ./Component/Panel/_primary.scss
+`.panel--primary` | ./component/panel/_primary.scss
 
 Following OOP practices, we inherit from a base component to a its subclass
-For example, when we are required of a dialog window, we create `./Component/_dialog.scss` where put the base styles for
-any dialogs that we can have within the application. Then we add `./Component/Dialog/_alert.scss` where set the extending styles
+For example, when we are required of a dialog window, we create `./component/dialog/_index.scss` where put the base styles for
+any dialogs that we can have within the application. Then we add `./component/dialog/_alert.scss` where set the extending styles
 for the concrete modal window. Now we refer to a concrete component in the HTML like that:
 
 ```
@@ -64,7 +62,7 @@ for the concrete modal window. Now we refer to a concrete component in the HTML 
 ## Themed Component
 Class | Location
 ----|----
-`.theme-halogen .foo` | `./Component/_foo.scss`
+`.theme-halogen .foo` | `./component/foo/_index.scss`
 
 ## Component Example
 
@@ -84,7 +82,7 @@ Class | Location
 </div>
 ```
 
-#### ./Component/_progressbar.scss
+#### ./component/progressbar/_index.scss
 ```sass
 .progressbar {
   position: relative;
@@ -113,7 +111,7 @@ Class | Location
 }
 ```
 
-#### ./Component/Progressbar/_big.scss
+#### ./component/progressbar/_big.scss
 ```sass
 .progressbar--big > .progressbar__status {
   font-size: 1.6rem;
@@ -121,7 +119,7 @@ Class | Location
   padding: 16px;
 }
 ```
-#### ./Component/Progressbar/_small.scss
+#### ./component/progressbar/_small.scss
 ```sass
 .progressbar--small > .progressbar__status {
   font-size: 1.1rem;
@@ -137,14 +135,14 @@ State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hi
 
 ##### HTML
 ```html
-<div class="l-main has-error">
+<div class="main has-error">
 <aside class="sidebar is-hidden">...</aside>
 </div>
 ```
 
-##### ./Component/_l-main.scss
+##### ./component/_main.scss
 ```css
-.l-main {
+.main {
   /* default style */
   &.has-error {
     /* state modified style */
@@ -152,7 +150,7 @@ State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hi
 }
 ```
 
-##### ./Base/_global-state.scss
+##### ./base/_global-state.scss
 ```css
 /* Global state */
 .is-hidden {
@@ -175,7 +173,7 @@ depending on the context.
 </html>
 ```
 
-##### ./Component/_sidebar.scss
+##### ./component/sidebar/_index.scss
 ```css
 .sidebar {
 /* default style */
@@ -202,7 +200,7 @@ If we need components to change styles according to a set theme (`.theme-baz` an
 }
 ```
 
-Where we have in `./Base/_defenitions.scss`:
+Where we have in `./base/_defenitions.scss`:
 ```sass
 $themes: baz qux;
 @function get-theme-style($theme, $key) {
@@ -255,30 +253,30 @@ File Structure
 
 ```
 Styles
-├───Component
-│   ├───Btn
+├───component
+│   ├───btn
 │   │   _index.scss
 │   │   _primary.scss
 │   │
-│   └───Form
+│   └───form
 │       │   _index.scss
 │       │
-│       ├───Auth
+│       ├───auth
 │       │       _index.scss
 │       │       _login.scss
 │       │
-│       └───Nav
+│       └───nav
 │               _index.scss
 │               _search.scss
 │
-└───Base
+└───base
     │   _h5b-normalize.scss
     │   _base.scss
     │   _definitions.scss
     │   _global-state.scss
     │   _animations.scss
     │
-    └───Mixin
+    └───mixin
             _media.scss
 
 
@@ -291,7 +289,7 @@ Naming Conventions
 -------
 
 * Class name represents source location. Let's say styles for `.form--nav--search` is expected in the file
-`Component/Form/Nav/_search.scss` [File Structure](#a-fs)).
+`component/form/nav/_search.scss` [File Structure](#a-fs)).
 * State classes are prefixed with `is-` or `has-` (e.g. `.is-hidden`, `.has-success`).
 * Theme classes are prefixed with `theme-`.
 
