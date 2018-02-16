@@ -59,6 +59,26 @@ for the concrete modal window. Now we refer to a concrete component in the HTML 
 <div class="dialog dialog--prompt">..</div>
 ```
 
+### Subclasses and elements
+Elements are styled in scopes of subclasses:
+```sass
+.shopping-cart {
+// Base styles
+}
+.shopping-cart--default {
+  .shopping-cart__heading {
+    color: $color-white;
+  }
+}
+.shopping-cart--inverse {
+  .shopping-cart__heading {
+    color: $color-block;
+  }
+}
+```
+Here we have an abstract component `.shopping-cart` extended by `.shopping-cart--default` and `.shopping-cart--inverse`
+where the first has white heading and the second black one.
+
 ## Themed Component
 Class | Location
 ----|----
@@ -131,7 +151,13 @@ Class | Location
 <p align="right"><a href="#contents">Top</a></p>
 
 ## State
-State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hidden`, `.has-error`.
+
+States are toggable sets of rules that:
+- describe component/element states: `.is-expanded`, `.is-hidden`, `.has-error`.
+- alternate presentation: `.is-uppercase`, `.is-sticky`, `.is-pointer`.
+
+State CSS classes usually consist of a few rules. Unlike components they do not represent entities, but
+modify object state.
 
 ##### HTML
 ```html
@@ -157,6 +183,7 @@ State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hi
   display: none !important;
 }
 ```
+
 
 <p align="right"><a href="#contents">Top</a></p>
 
