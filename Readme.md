@@ -130,7 +130,7 @@ Class | Location
 }
 ```
 
-<p align="right"><a href="#">Top</a></p>
+<p align="right"><a href="#contents">Top</a></p>
 
 ## State
 State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hidden`, `.has-error`.
@@ -160,10 +160,10 @@ State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hi
 }
 ```
 
-<p align="right"><a href="#">Top</a></p>
+<p align="right"><a href="#contents">Top</a></p>
 
 ## Theme
-Theme classes used to alternate the style of a component or a layout
+Theme classes used to alternate the style of a component
 depending on the context.
 
 ##### HTML
@@ -247,26 +247,28 @@ $themes: baz qux;
 </div>
 ```
 
-<p align="right"><a href="#">Top</a></p>
+<p align="right"><a href="#contents">Top</a></p>
 
 <a id="a-fs"></a>
-File Structure Example
+File Structure
 -------
 
 ```
 Styles
 ├───Component
-│   │   _form.scss
-│   │   _l-holygrail.scss
+│   ├───Btn
+│   │   _index.scss
+│   │   _primary.scss
 │   │
 │   └───Form
-│       │   _auth.scss
-│       │   _nav.scss
+│       │   _index.scss
 │       │
 │       ├───Auth
+│       │       _index.scss
 │       │       _login.scss
 │       │
 │       └───Nav
+│               _index.scss
 │               _search.scss
 │
 └───Base
@@ -282,7 +284,7 @@ Styles
 
 ```
 
-<p align="right"><a href="#">Top</a></p>
+<p align="right"><a href="#contents">Top</a></p>
 
 <a id="a-nc"></a>
 Naming Conventions
@@ -290,7 +292,6 @@ Naming Conventions
 
 * Class name represents source location. Let's say styles for `.form--nav--search` is expected in the file
 `Component/Form/Nav/_search.scss` [File Structure](#a-fs)).
-* Layout component classes/source files are prefixed with `l-`.
 * State classes are prefixed with `is-` or `has-` (e.g. `.is-hidden`, `.has-success`).
 * Theme classes are prefixed with `theme-`.
 
@@ -300,7 +301,6 @@ Class | Entity
 `.main-nav__title` | element (subcomponent)
 `.btn--primary`, `.main-nav--landing-page` | subclass
 `.is-hidden`, `.has-success` | a state
-`.l-holygrail` | a layout component
 `.theme-default`, `.theme-garland` | a theme
 
 
@@ -308,7 +308,7 @@ Class | Entity
 * [Modular CSS naming conventions](http://thesassway.com/advanced/modular-css-naming-conventions)
 * [Naming CSS Stuff Is Really Hard](http://seesparkbox.com/foundry/naming_css_stuff_is_really_hard)
 
-<p align="right"><a href="#">Top</a></p>
+<p align="right"><a href="#contents">Top</a></p>
 
 
 <a id="a-sc"></a>
@@ -338,7 +338,7 @@ Avoid long selectors with descendant/child combinators (.feed nav ul li h2).
 Long selectors besides harmful affect on selector performance mean that style rule-set is tied to particular
 location in the DOM. Independent selectors allow us to move components around our markup more freely.
 
-<p align="right"><a href="#">Top</a></p>
+<p align="right"><a href="#contents">Top</a></p>
 
 ## Further Reading
 
