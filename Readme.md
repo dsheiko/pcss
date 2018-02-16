@@ -1,6 +1,6 @@
 PCSS
 =====
-ver. 1.2.1
+ver. 1.2.2
 
 **Pragmatic CSS** is guidelines for writing scalable and maintainable style-sheets. PCSS divides the
 whole UI into **portable** and **reusable** components. Every component is described in a separate CSS (SASS/LESS/etc) module.
