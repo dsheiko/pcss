@@ -70,7 +70,7 @@ Class | Location
 
 ![](images/a-component.png)
 
-### HTML
+#### HTML
 ```html
 <div class="progressbar progressbar--big">
 	<output class="progressbar__status">
@@ -84,7 +84,7 @@ Class | Location
 </div>
 ```
 
-### ./Component/_progressbar.scss
+#### ./Component/_progressbar.scss
 ```sass
 .progressbar {
   position: relative;
@@ -113,7 +113,7 @@ Class | Location
 }
 ```
 
-### ./Component/Progressbar/_big.scss
+#### ./Component/Progressbar/_big.scss
 ```sass
 .progressbar--big > .progressbar__status {
   font-size: 1.6rem;
@@ -121,7 +121,7 @@ Class | Location
   padding: 16px;
 }
 ```
-### ./Component/Progressbar/_small.scss
+#### ./Component/Progressbar/_small.scss
 ```sass
 .progressbar--small > .progressbar__status {
   font-size: 1.1rem;
