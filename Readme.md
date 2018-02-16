@@ -15,12 +15,14 @@ from [OOCSS](http://oocss.org/), context-independent class names from
 
 
 # Contents
-* [Key concepts](#a-abs)
+* Key concepts
+  * [Component/Element/Subclass](#component)
+  * [State](#state)
+  * [Theme](#theme)
 * [File Structure Example](#a-fs)
 * [Naming Conventions](#a-nc)
 * [Selector Conventions](#a-sc)
 
-<a id="a-abs"></a>
 Key concepts
 -------
 
@@ -128,7 +130,7 @@ Class | Location
 }
 ```
 
-
+<p align="right"><a href="#">Top</a></p>
 
 ## State
 State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hidden`, `.has-error`.
@@ -158,6 +160,7 @@ State classes are intended to represent a UI unit state: `.is-expanded`, `.is-hi
 }
 ```
 
+<p align="right"><a href="#">Top</a></p>
 
 ## Theme
 Theme classes used to alternate the style of a component or a layout
@@ -244,6 +247,8 @@ $themes: baz qux;
 </div>
 ```
 
+<p align="right"><a href="#">Top</a></p>
+
 <a id="a-fs"></a>
 File Structure Example
 -------
@@ -277,6 +282,7 @@ Styles
 
 ```
 
+<p align="right"><a href="#">Top</a></p>
 
 <a id="a-nc"></a>
 Naming Conventions
@@ -301,6 +307,9 @@ Class | Entity
 ##### Further readings
 * [Modular CSS naming conventions](http://thesassway.com/advanced/modular-css-naming-conventions)
 * [Naming CSS Stuff Is Really Hard](http://seesparkbox.com/foundry/naming_css_stuff_is_really_hard)
+
+<p align="right"><a href="#">Top</a></p>
+
 
 <a id="a-sc"></a>
 Selector Conventions
@@ -329,25 +338,7 @@ Avoid long selectors with descendant/child combinators (.feed nav ul li h2).
 Long selectors besides harmful affect on selector performance mean that style rule-set is tied to particular
 location in the DOM. Independent selectors allow us to move components around our markup more freely.
 
-
-## What's wrong with BEM?
-`BEM` introduces an excellent class naming convention. However they suggest to use Modifier both as component extension
-and as component state. Consider the following example:
-
-
-```
-<a class="btn btn--primary">OK</a>
-```
-Here we see a concrete button of type `primary` (`btn--primary`) that extends
-Subclass represents a component.
-
-```
-<a class="btn btn--primary is-hidden">OK</a>
-```
-`is-hidden` sets `primary` button in a particular state. State is
-usually set on component dynamically (e.g. by JavaScript).
-
-By distinguishing states and subclasses `PCSS` encourages for better code maintainability
+<p align="right"><a href="#">Top</a></p>
 
 ## Further Reading
 
@@ -355,4 +346,3 @@ By distinguishing states and subclasses `PCSS` encourages for better code mainta
 * [Code smells in CSS](http://csswizardry.com/2012/11/code-smells-in-css/)
 
 [![Analytics](https://ga-beacon.appspot.com/UA-1150677-13/dsheiko/pcss)](http://githalytics.com/dsheiko/pcss)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dsheiko/pcss/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
