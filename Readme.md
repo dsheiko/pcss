@@ -37,7 +37,7 @@ Component consists of elements (e.g. `form__title`) and can be extended by subcl
 
 ![](images/a-component-diagram.png)
 
-#### Element
+## Element
 Class | Location
 ----|----
 `.panel__header` | `./Component/_panel.scss`
@@ -46,7 +46,7 @@ Component is built of elements. Elements is an integral parts of a component and
 cannot be reused outside of component scope.
 
 
-#### Subclass
+## Subclass
 Class | Location
 ----|----
 `.panel--primary` | ./Component/Panel/_primary.scss
@@ -61,16 +61,16 @@ for the concrete modal window. Now we refer to a concrete component in the HTML 
 <div class="dialog dialog--prompt">..</div>
 ```
 
-#### Themed Component
+## Themed Component
 Class | Location
 ----|----
 `.theme-halogen .foo` | `./Component/_foo.scss`
 
-#### Component Example
+## Component Example
 
 ![](images/a-component.png)
 
-##### HTML
+### HTML
 ```html
 <div class="progressbar progressbar--big">
 	<output class="progressbar__status">
@@ -84,7 +84,7 @@ Class | Location
 </div>
 ```
 
-##### ./Component/_progressbar.scss
+### ./Component/_progressbar.scss
 ```sass
 .progressbar {
   position: relative;
@@ -113,7 +113,7 @@ Class | Location
 }
 ```
 
-##### ./Component/Progressbar/_big.scss
+### ./Component/Progressbar/_big.scss
 ```sass
 .progressbar--big > .progressbar__status {
   font-size: 1.6rem;
@@ -121,7 +121,7 @@ Class | Location
   padding: 16px;
 }
 ```
-##### ./Component/Progressbar/_small.scss
+### ./Component/Progressbar/_small.scss
 ```sass
 .progressbar--small > .progressbar__status {
   font-size: 1.1rem;
