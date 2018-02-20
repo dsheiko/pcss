@@ -1,0 +1,9 @@
+.navbar--header {
+  background-color: $color-nav-gray;
+  padding: $rhythm $rhythm * 2;
+  .navbar__logo {
+    font-size: 3.5rem;
+    color: $color-white;
+    margin: 0;
+  }
+}

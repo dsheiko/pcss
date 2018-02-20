@@ -1,0 +1,23 @@
+$rhythm: 1rem;
+$row-columns: 12 !default;
+$col-pad: $rhythm !default;
+$col-gap: $rhythm !default;
+
+$color-black: black;
+$color-gray: #CCC;
+$color-light-gray: #EEE;
+$color-nav-gray: #494d55;
+$color-white: white;
+
+
+%col-gap {
+  margin: $col-gap;
+}
+
+%col-pad {
+  padding: $col-pad;
+}
+
+%row-contain {
+  margin: -$col-pad;
+}

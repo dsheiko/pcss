@@ -1,0 +1,8 @@
+.container--loose {
+  @extend .container--compact;
+  
+  .col {
+    // Add margin to cells
+    @extend %col-gap;
+  }
+}

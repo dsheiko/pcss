@@ -1,0 +1,22 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server ./public/ -o -c-1",
+    "build": "node-sass --include-path scss ./src/index.scss /tmp/examples.css && npm run postcss",
+    "postcss": "postcss /tmp/examples.css -o ./public/assets/index.css && rm /tmp/examples.css",
+    "watch": "node-sass -w --include-path scss ./src/index.scss ./public/assets/index.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^8.0.0",
+    "http-server": "^0.11.1",
+    "node-sass": "^4.7.2",
+    "postcss-cli": "^5.0.0"
+  }
+}

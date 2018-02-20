@@ -1,0 +1,16 @@
+.container--demo {
+  padding: $rhythm $rhythm * 2;
+  border-left: 1px solid $color-gray;
+  border-right: 1px solid $color-gray;
+
+  .container {
+    margin-top: $rhythm;
+    margin-bottom: $rhythm;
+  }
+
+  .col {
+    // Decorate cells for demo
+    background-color: $color-light-gray;
+    border: 1px solid $color-gray;
+  }
+}

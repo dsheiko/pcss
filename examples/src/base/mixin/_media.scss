@@ -1,0 +1,76 @@
+/**
+* Conditional Media Query Mixin
+* by @sheiko (http://dsheiko.com)
+*
+* The problem this mixin solves is explained there
+* https://css-tricks.com/conditional-media-query-mixins/
+*
+* @example
+
+ @include media( "retina" ){
+   border: 2px dotted #000;
+ };
+
+ @include media( "screen", ">md", "<lg" ){
+   background: red;
+   color: white;
+ };
+
+*/
+
+
+// Predefined Break-points
+// @see https://css-tricks.com/snippets/css/media-queries-for-standard-devices/
+
+$screen-xxs:                 320px; // Galaxy S3, S4, S5, Note 3, iPhone 4, 5, 5S, 5C, 5SE
+$screen-xs:                  360px; // Galaxy S6, HTC, Google
+$screen-xs-landscape:        640px;
+$screen-sm:                  768px;
+$screen-md:                  992px;
+$screen-lg:                  1200px;
+$screen-xl:                  1440px;
+
+@function translate-media-condition($c) {
+  $condMap: (
+		"screen": "only screen",
+		"print": "only print",
+		"retina": "(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 120dpi)",
+     ">xl": "(min-width: #{$screen-xl + 1})",
+		"<xl": "(max-width: #{$screen-xl})",
+
+    ">lg": "(min-width: #{$screen-lg + 1})",
+		"<lg": "(max-width: #{$screen-lg})",
+
+    ">md": "(min-width: #{$screen-md + 1})",
+		"<md": "(max-width: #{$screen-md})",
+
+    ">sm": "(min-width: #{$screen-sm + 1})",
+		"<sm": "(max-width: #{$screen-sm})",
+
+    ">xs-landscape": "(min-width: #{$screen-xs-landscape + 1})",
+		"<xs-landscape": "(max-width: #{$screen-xs-landscape})",
+
+    ">xs": "(min-width: #{$screen-xs + 1})",
+		"<xs": "(max-width: #{$screen-xs})",
+
+    ">xxs": "(min-width: #{$screen-xxs + 1})",
+		"<xxs": "(max-width: #{$screen-xxs})"
+	);
+  @return map-get( $condMap, $c );
+}
+
+// The mdia mixin
+@mixin media($args...) {
+  $query: "";
+  @each $arg in $args {
+    $op: "";
+    @if ( $query != "" ) {
+      $op: " and ";
+    }
+    $query: $query + $op + translate-media-condition($arg);
+  }
+  @media #{$query}  { @content; }
+}
+
+
+

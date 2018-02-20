@@ -1,0 +1,825 @@
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+html {
+  color: #222;
+  line-height: 1.4; }
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Vendor-prefixed and regular ::selection selectors cannot be combined:
+ * https://stackoverflow.com/a/16982510/7133471
+ *
+ * Customize the background color to match your design.
+ */
+::selection {
+  background: #b3d4fc;
+  text-shadow: none; }
+
+/*
+ * A better looking default horizontal rule
+ */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0; }
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle; }
+
+/*
+ * Remove default fieldset styles.
+ */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+textarea {
+  resize: vertical; }
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0; }
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+/*
+ * Hide visually and from screen readers
+ */
+.hidden {
+  display: none !important; }
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+  /* 1 */ }
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+  white-space: inherit; }
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+.invisible {
+  visibility: hidden; }
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */ }
+
+.clearfix:after {
+  clear: both; }
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */ }
+
+@media print, (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */ }
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    /* Black prints faster */
+    box-shadow: none !important;
+    text-shadow: none !important; }
+  a,
+  a:visited {
+    text-decoration: underline; }
+  a[href]:after {
+    content: " (" attr(href) ")"; }
+  abbr[title]:after {
+    content: " (" attr(title) ")"; }
+  /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: ""; }
+  pre {
+    white-space: pre-wrap !important; }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid; }
+  /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+  thead {
+    display: table-header-group; }
+  tr,
+  img {
+    page-break-inside: avoid; }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3; }
+  h2,
+  h3 {
+    page-break-after: avoid; } }
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+html {
+  font-size: 10px; }
+
+body {
+  min-width: 320px;
+  font-size: 1.4rem;
+  margin: 0;
+  padding: 0; }
+
+nav ul, nav ol {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+.container--loose .col, .container--contained .col {
+  margin: 1rem; }
+
+.container--compact .col, .container--loose .col, .container--contained .col {
+  padding: 1rem; }
+
+.container--contained .row {
+  margin: -1rem; }
+
+.is-hidden {
+  display: none !important; }
+
+/**
+* Conditional Media Query Mixin
+* by @sheiko (http://dsheiko.com)
+*
+* The problem this mixin solves is explained there
+* https://css-tricks.com/conditional-media-query-mixins/
+*
+* @example
+
+ @include media( "retina" ){
+   border: 2px dotted #000;
+ };
+
+ @include media( "screen", ">md", "<lg" ){
+   background: red;
+   color: white;
+ };
+
+*/
+.navbar--header {
+  background-color: #494d55;
+  padding: 1rem 2rem; }
+  .navbar--header .navbar__logo {
+    font-size: 3.5rem;
+    color: white;
+    margin: 0; }
+
+.container--demo {
+  padding: 1rem 2rem;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC; }
+  .container--demo .container {
+    margin-top: 1rem;
+    margin-bottom: 1rem; }
+  .container--demo .col {
+    background-color: #EEE;
+    border: 1px solid #CCC; }
+
+.row {
+  display: flex; }
+
+.row--align-start {
+  align-items: flex-start; }
+
+.row--align-center {
+  align-items: center; }
+
+.row--align-end {
+  align-items: flex-end; }
+
+.row--align-stretch {
+  align-items: stretch; }
+
+.row--justify-center {
+  justify-content: center; }
+
+.row--justify-end {
+  justify-content: flex-end; }
+
+.row--justify-end {
+  justify-content: flex-end; }
+
+.row--justify-space-around {
+  justify-content: space-around; }
+
+.row--justify-space-between {
+  justify-content: space-between; }
+
+.row--justify-space-evenly {
+  justify-content: space-evenly; }
+
+.row--justify-start {
+  justify-content: flex-start; }
+
+.row--inline {
+  display: inline-flex; }
+
+.row--wrap {
+  flex-wrap: wrap; }
+
+/*
+  Make ROW content to repeal
+
+  [ subtital   |        80$ ]
+  [ VAR        |        10$ ]
+*/
+.row--col-repel .col:last-child {
+  text-align: right; }
+
+.col {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  align-items: center; }
+
+.col__br {
+  width: 100%; }
+
+.col--1 {
+  flex: 0 0 8.33333%;
+  max-width: 8.33333%; }
+
+@media only screen and (min-width: 361px) {
+  .col.col--xs-1 {
+    flex: 0 0 8.33333%;
+    max-width: 8.33333%; }
+  .col.col--xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 769px) {
+  .col.col--sm-1 {
+    flex: 0 0 8.33333%;
+    max-width: 8.33333%; }
+  .col.col--sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 993px) {
+  .col.col--md-1 {
+    flex: 0 0 8.33333%;
+    max-width: 8.33333%; }
+  .col.col--md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 1201px) {
+  .col.col--lg-1 {
+    flex: 0 0 8.33333%;
+    max-width: 8.33333%; }
+  .col.col--lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+.col--2 {
+  flex: 0 0 16.66667%;
+  max-width: 16.66667%; }
+
+@media only screen and (min-width: 361px) {
+  .col.col--xs-2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%; }
+  .col.col--xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 769px) {
+  .col.col--sm-2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%; }
+  .col.col--sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 993px) {
+  .col.col--md-2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%; }
+  .col.col--md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 1201px) {
+  .col.col--lg-2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%; }
+  .col.col--lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+.col--3 {
+  flex: 0 0 25%;
+  max-width: 25%; }
+
+@media only screen and (min-width: 361px) {
+  .col.col--xs-3 {
+    flex: 0 0 25%;
+    max-width: 25%; }
+  .col.col--xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 769px) {
+  .col.col--sm-3 {
+    flex: 0 0 25%;
+    max-width: 25%; }
+  .col.col--sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 993px) {
+  .col.col--md-3 {
+    flex: 0 0 25%;
+    max-width: 25%; }
+  .col.col--md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 1201px) {
+  .col.col--lg-3 {
+    flex: 0 0 25%;
+    max-width: 25%; }
+  .col.col--lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+.col--4 {
+  flex: 0 0 33.33333%;
+  max-width: 33.33333%; }
+
+@media only screen and (min-width: 361px) {
+  .col.col--xs-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%; }
+  .col.col--xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 769px) {
+  .col.col--sm-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%; }
+  .col.col--sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 993px) {
+  .col.col--md-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%; }
+  .col.col--md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 1201px) {
+  .col.col--lg-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%; }
+  .col.col--lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+.col--5 {
+  flex: 0 0 41.66667%;
+  max-width: 41.66667%; }
+
+@media only screen and (min-width: 361px) {
+  .col.col--xs-5 {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%; }
+  .col.col--xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 769px) {
+  .col.col--sm-5 {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%; }
+  .col.col--sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 993px) {
+  .col.col--md-5 {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%; }
+  .col.col--md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 1201px) {
+  .col.col--lg-5 {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%; }
+  .col.col--lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+.col--6 {
+  flex: 0 0 50%;
+  max-width: 50%; }
+
+@media only screen and (min-width: 361px) {
+  .col.col--xs-6 {
+    flex: 0 0 50%;
+    max-width: 50%; }
+  .col.col--xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 769px) {
+  .col.col--sm-6 {
+    flex: 0 0 50%;
+    max-width: 50%; }
+  .col.col--sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 993px) {
+  .col.col--md-6 {
+    flex: 0 0 50%;
+    max-width: 50%; }
+  .col.col--md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 1201px) {
+  .col.col--lg-6 {
+    flex: 0 0 50%;
+    max-width: 50%; }
+  .col.col--lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+.col--7 {
+  flex: 0 0 58.33333%;
+  max-width: 58.33333%; }
+
+@media only screen and (min-width: 361px) {
+  .col.col--xs-7 {
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%; }
+  .col.col--xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 769px) {
+  .col.col--sm-7 {
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%; }
+  .col.col--sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 993px) {
+  .col.col--md-7 {
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%; }
+  .col.col--md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 1201px) {
+  .col.col--lg-7 {
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%; }
+  .col.col--lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+.col--8 {
+  flex: 0 0 66.66667%;
+  max-width: 66.66667%; }
+
+@media only screen and (min-width: 361px) {
+  .col.col--xs-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%; }
+  .col.col--xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 769px) {
+  .col.col--sm-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%; }
+  .col.col--sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 993px) {
+  .col.col--md-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%; }
+  .col.col--md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 1201px) {
+  .col.col--lg-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%; }
+  .col.col--lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+.col--9 {
+  flex: 0 0 75%;
+  max-width: 75%; }
+
+@media only screen and (min-width: 361px) {
+  .col.col--xs-9 {
+    flex: 0 0 75%;
+    max-width: 75%; }
+  .col.col--xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 769px) {
+  .col.col--sm-9 {
+    flex: 0 0 75%;
+    max-width: 75%; }
+  .col.col--sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 993px) {
+  .col.col--md-9 {
+    flex: 0 0 75%;
+    max-width: 75%; }
+  .col.col--md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 1201px) {
+  .col.col--lg-9 {
+    flex: 0 0 75%;
+    max-width: 75%; }
+  .col.col--lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+.col--10 {
+  flex: 0 0 83.33333%;
+  max-width: 83.33333%; }
+
+@media only screen and (min-width: 361px) {
+  .col.col--xs-10 {
+    flex: 0 0 83.33333%;
+    max-width: 83.33333%; }
+  .col.col--xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 769px) {
+  .col.col--sm-10 {
+    flex: 0 0 83.33333%;
+    max-width: 83.33333%; }
+  .col.col--sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 993px) {
+  .col.col--md-10 {
+    flex: 0 0 83.33333%;
+    max-width: 83.33333%; }
+  .col.col--md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 1201px) {
+  .col.col--lg-10 {
+    flex: 0 0 83.33333%;
+    max-width: 83.33333%; }
+  .col.col--lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+.col--11 {
+  flex: 0 0 91.66667%;
+  max-width: 91.66667%; }
+
+@media only screen and (min-width: 361px) {
+  .col.col--xs-11 {
+    flex: 0 0 91.66667%;
+    max-width: 91.66667%; }
+  .col.col--xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 769px) {
+  .col.col--sm-11 {
+    flex: 0 0 91.66667%;
+    max-width: 91.66667%; }
+  .col.col--sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 993px) {
+  .col.col--md-11 {
+    flex: 0 0 91.66667%;
+    max-width: 91.66667%; }
+  .col.col--md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 1201px) {
+  .col.col--lg-11 {
+    flex: 0 0 91.66667%;
+    max-width: 91.66667%; }
+  .col.col--lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+.col--12 {
+  flex: 0 0 100%;
+  max-width: 100%; }
+
+@media only screen and (min-width: 361px) {
+  .col.col--xs-12 {
+    flex: 0 0 100%;
+    max-width: 100%; }
+  .col.col--xs-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 769px) {
+  .col.col--sm-12 {
+    flex: 0 0 100%;
+    max-width: 100%; }
+  .col.col--sm-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 993px) {
+  .col.col--md-12 {
+    flex: 0 0 100%;
+    max-width: 100%; }
+  .col.col--md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+@media only screen and (min-width: 1201px) {
+  .col.col--lg-12 {
+    flex: 0 0 100%;
+    max-width: 100%; }
+  .col.col--lg-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none; } }
+
+.col--auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: none; }

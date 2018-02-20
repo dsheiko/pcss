@@ -1,0 +1,6 @@
+.container--compact {
+    .col {
+    // Add padding to cells
+    @extend %col-pad;
+  }
+}

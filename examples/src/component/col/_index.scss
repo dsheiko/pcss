@@ -1,0 +1,40 @@
+.col {
+  position: relative;
+  width: 100%;
+  min-height: 1px; // Prevent columns from collapsing when empty
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  align-items: center;
+}
+
+.col__br {
+  width: 100%;
+}
+
+@mixin build-col($size, $columns: $row-columns) {
+  flex: 0 0 percentage($size / $columns);
+  max-width: percentage($size / $columns);
+}
+
+$col-breakpoints: ("xs", "sm", "md", "lg");
+
+@for $i from 1 through $row-columns {
+  .col--#{$i} {
+    @include build-col($i, $row-columns);
+  }
+  @each $tier in $col-breakpoints {
+    @include media( "screen", ">#{$tier}" ){
+      .col.col--#{$tier}-#{$i} {
+        @include build-col($i, $row-columns);
+      }
+      .col.col--#{$tier}-auto {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none;
+      }
+    }
+  }
+}
+
+@import "_auto.scss";

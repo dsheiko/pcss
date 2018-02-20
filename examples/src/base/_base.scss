@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  min-width: 320px;
+  font-size: 1.4rem;
+  margin: 0;
+  padding: 0;
+}
+
+
+nav {
+  ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}

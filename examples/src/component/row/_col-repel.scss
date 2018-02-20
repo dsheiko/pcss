@@ -1,0 +1,11 @@
+/*
+  Make ROW content to repeal
+
+  [ subtital   |        80$ ]
+  [ VAR        |        10$ ]
+*/
+.row--col-repel {
+  .col:last-child {
+    text-align: right;
+  }
+}

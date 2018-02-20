@@ -1,0 +1,9 @@
+.container--contained {
+  @extend .container--loose;
+
+  .row {
+    // Leave gaps between cells, but remove between cells and container
+    @extend %row-contain;
+  }
+
+}
