@@ -2,15 +2,14 @@ PCSS
 =====
 ver. 1.2.2
 
-**Pragmatic CSS** is guidelines for writing scalable and maintainable style-sheets. PCSS divides the
+**Pragmatic CSS** is a collection of guidelines for writing scalable and maintainable style-sheets. PCSS divides the
 whole UI into **portable** and **reusable** components. Every component is described in a separate CSS (SASS/LESS/etc) module.
 PCSS's naming convention makes it easier to locate a module corresponding to a problem and encourages developer
 on producing optimized object-oriented CSS.
 
-PCSS doesn't reveal much unique, but extracts and combines the best parts of existing standards and practices.
-It borrows Base, State and Theme rules from [SMACSS](https://smacss.com/), element and subtype (modifier) naming conventions
-from  [BEM](https://en.bem.info), the idea of common OOP principles in CSS (inheritance, OCP, SRP)
-from [OOCSS](http://oocss.org/), context-independent class names from
+PCSS is standing on the shoulders of giants. It borrows Base, State and Theme rules from [SMACSS](https://smacss.com/),
+element and subclass (modifier) naming conventions from  [BEM](https://en.bem.info), the idea of common OOP principles in CSS (inheritance, OCP, SRP)
+from [OOCSS](http://oocss.org/), context-independent cascading from
 [Modular CSS naming conventions](http://thesassway.com/advanced/modular-css-naming-conventions)
 
 
@@ -49,9 +48,9 @@ Class | Location
 ----|----
 `.panel--primary` | ./component/panel/_primary.scss
 
-Following OOP practices, we inherit from a base component to a its subclass
-For example, when we are required of a dialog window, we create `./component/dialog/_index.scss` where put the base styles for
-any dialogs that we can have within the application. Then we add `./component/dialog/_alert.scss` where set the extending styles
+Following OOP practices, we inherit from a base component to a subclass
+For example, when we are required of a dialog window, we create `./component/dialog/_index.scss` where we put the base styles for
+any dialogs in the application. Then we add `./component/dialog/_alert.scss` where we set the extending styles
 for the concrete modal window. Now we refer to a concrete component in the HTML like that:
 
 ```
@@ -79,10 +78,6 @@ Elements are styled in scopes of subclasses:
 Here we have an abstract component `.shopping-cart` extended by `.shopping-cart--default` and `.shopping-cart--inverse`
 where the first has white heading and the second black one.
 
-## Themed Component
-Class | Location
-----|----
-`.theme-halogen .foo` | `./component/foo/_index.scss`
 
 ## Component Example
 
@@ -267,7 +262,7 @@ $themes: baz qux;
   </article>
 </div>
 
-<div class="theme-halogen">
+<div class="theme-bar>
 ...
 </div>
 ```
@@ -345,7 +340,7 @@ Remember that browser reads selectors from right to left, long selectors may giv
 a unwanted contribution to production style-sheet file size. Deep nesting in CSS-preprocessor sources may cause
 the described problems even without your awareness. So, keep nesting no more than 3-4 levels.
 
-Avoid `@extend`-ing in SASS/LESS. It adds a long CSS selectors in a compiled code.
+Avoid excessive `@extend`-ing in SASS/LESS. It adds a long CSS selectors in a compiled code.
 
 ### Use classes for styling, IDs and data-attributes to bind JavaScript
 
