@@ -1,7 +1,7 @@
 .container--demo {
   padding: $rhythm $rhythm * 2;
-  border-left: 1px solid $color-gray;
-  border-right: 1px solid $color-gray;
+  border-left: $border;
+  border-right: $border;
 
   .container {
     margin-top: $rhythm;
@@ -10,7 +10,7 @@
 
   .col {
     // Decorate cells for demo
-    background-color: $color-light-gray;
+    background-color: $color-black-50;
     border: 1px solid $color-gray;
   }
 }

@@ -1,0 +1,13 @@
+.menu-item--simple {
+  color: $color-gray;
+  display: block;
+
+  a, a:visited {
+    color: $color-gray;
+    text-decoration: none;
+  }
+  a:hover {
+    color: $color-primary;
+  }
+  padding: 0.3rem 2rem;
+}

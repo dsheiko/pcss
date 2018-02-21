@@ -4,8 +4,14 @@ function isWhitelisted( url ){
   return url.substr( 0, 2 ) === "./";
 }
 
+function extractUrl( hash ){
+  const raw = hash.substr( 1 ),
+        [ url ] = raw.split( "!" );
+  return url;
+}
+
 function handleHashChange() {
-  const url = location.hash ? location.hash.substr( 1 ) : "./page/grid.html";
+  const url = location.hash ? extractUrl( location.hash ) : "./page/grid.html";
   if ( !isWhitelisted( url ) ) {
     return;
   }

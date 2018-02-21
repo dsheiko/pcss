@@ -257,24 +257,24 @@ nav ul, nav ol {
  };
 
 */
-.navbar--header {
-  background-color: #494d55;
+.nav-bar--header {
+  background-color: #6c757d;
   padding: 1rem 2rem; }
-  .navbar--header .navbar__logo {
+  .nav-bar--header .nav-bar__logo {
     font-size: 3.5rem;
     color: white;
     margin: 0; }
 
 .container--demo {
   padding: 1rem 2rem;
-  border-left: 1px solid #CCC;
-  border-right: 1px solid #CCC; }
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1); }
   .container--demo .container {
     margin-top: 1rem;
     margin-bottom: 1rem; }
   .container--demo .col {
-    background-color: #EEE;
-    border: 1px solid #CCC; }
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 1px solid #6c757d; }
 
 .row {
   display: flex; }
@@ -823,3 +823,59 @@ nav ul, nav ol {
   flex: 0 0 auto;
   width: auto;
   max-width: none; }
+
+.menu-item {
+  user-select: none;
+  display: inline-block; }
+
+.menu-item--divider {
+  margin: 1rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  height: 0; }
+
+.menu-item--main {
+  padding: 0 2rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  color: #6c757d;
+  white-space: nowrap; }
+  .menu-item--main:hover {
+    background-color: #343a40; }
+  .menu-item--main .menu-item__dl {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0; }
+  .menu-item--main .menu-item__dt {
+    display: block;
+    width: 2rem;
+    min-width: 2rem;
+    margin: 0 1rem 0 0;
+    padding: 0;
+    text-align: center; }
+  .menu-item--main .menu-item__dd {
+    display: block;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap; }
+    .menu-item--main .menu-item__dd a, .menu-item--main .menu-item__dd a:hover, .menu-item--main .menu-item__dd a:visited {
+      color: #6c757d; }
+
+.menu-item--section {
+  color: #343a40;
+  text-transform: uppercase;
+  padding: 1rem 2rem 0 2rem;
+  line-height: 4rem; }
+
+.menu-item--simple {
+  color: #6c757d;
+  display: block;
+  padding: 0.3rem 2rem; }
+  .menu-item--simple a, .menu-item--simple a:visited {
+    color: #6c757d;
+    text-decoration: none; }
+  .menu-item--simple a:hover {
+    color: #007bff; }

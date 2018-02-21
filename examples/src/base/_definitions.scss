@@ -1,14 +1,11 @@
+@import "definitions/_colors.scss";
+
 $rhythm: 1rem;
 $row-columns: 12 !default;
 $col-pad: $rhythm !default;
 $col-gap: $rhythm !default;
 
-$color-black: black;
-$color-gray: #CCC;
-$color-light-gray: #EEE;
-$color-nav-gray: #494d55;
-$color-white: white;
-
+$border: 1px solid $color-black-100;
 
 %col-gap {
   margin: $col-gap;

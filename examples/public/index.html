@@ -8,10 +8,10 @@
   </head>
   <body>
 
-    <header class="navbar navbar--header">
-      <h1 class="navbar__logo">PCSS</h1>
+    <header class="nav-bar nav-bar--header">
+      <h1 class="nav-bar__logo">PCSS</h1>
     </header>
-    <div class="container container--compact">
+    <main class="container container--compact">
       <div class="row">
         <nav class="col col--2">
           <ul>
@@ -23,20 +23,11 @@
             </li>
           </ul>
         </nav>
-        <div class="col">
-          <div class="container container--demo" data-bind="frame">
-            <link rel="html-import" href="./page/grid.html">
-          </div>
-        </div>
-        <nav class="col col--2">
-          <ul>
-            <li>
-              <a>How to works</a>
-            </li>
-          </ul>
-        </nav>
+        <article class="col" data-bind="frame">
+          <link rel="html-import" href="./page/grid.html">
+        </article>
       </div>
-    </div>
+    </main>
 
   <script src="./js/html-imports.js"></script>
   <script src="./js/main.js"></script>

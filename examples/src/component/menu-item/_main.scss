@@ -1,0 +1,40 @@
+.menu-item--main {
+  padding: 0 $rhythm * 2;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  color: $color-gray;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: $color-dark;
+  }
+
+  .menu-item__dl {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+  }
+
+  .menu-item__dt {
+    display: block;
+    width: $rhythm * 2;
+    min-width: $rhythm * 2;
+    margin: 0 $rhythm 0 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .menu-item__dd {
+    display: block;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+    a, a:hover, a:visited {
+      color: $color-gray;
+    }
+  }
+}
