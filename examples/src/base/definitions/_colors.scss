@@ -12,3 +12,13 @@ $color-danger: #dc3545;
 $color-white: white;
 $color-dark: #343a40;
 $color-light: #f8f9fa;
+
+
+$shade-step-level: 15%;
+$saturation-step-level: 5%;
+@function darker($color, $level: 1) {
+  @return darken(saturate($color, $saturation-step-level), $shade-step-level * $level);
+}
+@function lighter($color, $level: 1) {
+  @return lighten(saturate($color, $saturation-step-level), $shade-step-level * $level);
+}

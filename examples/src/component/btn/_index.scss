@@ -7,15 +7,11 @@
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  border: 1px solid transparent;
-
+  border: .1rem solid transparent;
+  border-radius: $border-radius;
   @extend .btn--sm;
 
-  border-radius: .25rem;
   will-change: color, background-color, border-color, box-shadow;
   transition: color .15s ease-in-out,
     background-color .15s ease-in-out,
@@ -28,11 +24,41 @@
   &:not(:disabled) {
     cursor: pointer;
   }
-  
+
   &:disabled {
   }
 }
 
+@mixin style-brand-btn($brand-color, $text-color: #fff) {
+  color: $text-color;
+  background-color: $brand-color;
+  border-color: $brand-color;
+
+  &[aria-pressed=true], &:active {
+    background-color: darker($brand-color, 1.2);
+    border-color: darker($brand-color, 1.2);
+  }
+
+  &:hover {
+    background-color: darker($brand-color);
+    border-color: darker($brand-color);
+  }
+  &:disabled {
+    background-color: lighter($brand-color);
+    border-color: lighter($brand-color);
+  }
+  &.btn--outline {
+    color: $brand-color;
+  }
+}
+
 @import "_primary.scss";
+@import "_secondary.scss";
+@import "_success.scss";
+@import "_info.scss";
+@import "_warning.scss";
+@import "_danger.scss";
+
 @import "_outline.scss";
 @import "_lg.scss";
+@import "_xl.scss";

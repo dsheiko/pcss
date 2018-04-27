@@ -1,10 +1,40 @@
-<h3>BTN</h3>
 
+<h1 class='section__h1'>BTN</h1>
 
-<button type="button" class="btn btn--primary">Primary</button>
+<h2 id=".btn--themes" class='section__h2'>Button themes</h2>
+<p>Theming subclasses represent a few predefined button styles, each serving its own semantic purpose</p>
+<div>
+  <button type="button" class="btn btn--primary">Primary</button>
+  <button type="button" class="btn btn--secondary">Secondary</button>
+  <button type="button" class="btn btn--success">Success</button>
+  <button type="button" class="btn btn--info">Info</button>
+  <button type="button" class="btn btn--warning">Warning</button>
+  <button type="button" class="btn btn--danger">Danger</button>
+</div>
 
+<h2 id=".btn--brand1" class='section__h2'>Outline buttons</h2>
+<p>Subclass <code>btn--outline</code> can be applied on top of theming subclass to modify look & feel</p>
+<div>
+  <button type="button" class="btn btn--primary btn--outline">Primary</button>
+  <button type="button" class="btn btn--secondary btn--outline">Secondary</button>
+  <button type="button" class="btn btn--success btn--outline">Success</button>
+  <button type="button" class="btn btn--info btn--outline">Info</button>
+  <button type="button" class="btn btn--warning btn--outline">Warning</button>
+  <button type="button" class="btn btn--danger btn--outline">Danger</button>
+</div>
 
-<button type="button" class="btn btn--primary btn--outline">Primary</button>
+<h4 id=".btn--brand1">Sizes</h4>
+<p>Sizing subclasses modify button size</p>
+<div>
+  <button type="button" class="btn btn--primary btn--sm">Small</button>
+  <button type="button" class="btn btn--primary btn--lg">Large</button>
+  <button type="button" class="btn btn--primary btn--xl">Extra Large</button>
+</div>
 
-
-<button type="button" class="btn btn--primary btn--lg">Primary</button>
+<h4 id=".btn--brand1">States</h4>
+<p>Button can be switched to disabled state by adding <code>disabled</code> attribute, to active (pressed) state by adding <code>aria-pressed="true"</code>  </p>
+<div>
+  <button type="button" aria-pressed="true" class="btn btn--primary btn--sm">Active</button>
+  <button type="button" class="btn btn--primary btn--sm">Normal</button>
+  <button type="button" disabled class="btn btn--primary">Disabled</button>
+</div>

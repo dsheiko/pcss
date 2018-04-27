@@ -1,13 +1,3 @@
 .btn--primary {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
-  &:hover {
-    background-color: #0069d9;
-    border-color: #0062cc;
-  }
-  &:disabled {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
+  @include style-brand-btn($color-primary);
 }

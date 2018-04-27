@@ -13,17 +13,17 @@
     </header>
     <main class="container container--compact">
       <div class="row">
-        <nav class="col col--2">
-          <ul>
-            <li>
+        <nav class="col col--2 section section--mainnav">
+          <ul data-bind="mainnav" class="section__menu">
+            <li class="menu-item menu-item--simple">
               <a href="#./page/grid.html">Grid System</a>
             </li>
-            <li>
+            <li class="menu-item menu-item--simple">
               <a href="#./page/btn.html">Btn</a>
             </li>
           </ul>
         </nav>
-        <article class="col" data-bind="frame">
+        <article class="col section section--article" data-bind="frame">
           <link rel="html-import" href="./page/grid.html">
         </article>
       </div>

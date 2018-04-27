@@ -1,0 +1,20 @@
+%section__h {
+  margin-bottom: .8rem;
+  line-height: 1.2;
+}
+
+.section--article {
+
+  .section__h1 {
+    font-size: 4.8rem;
+    @extend %section__h;
+  }
+  .section__h2 {
+    font-size: 3.2rem;
+    @extend %section__h;
+  }
+  .section__h3 {
+    font-size: 2.8rem;
+    @extend %section__h;
+  }
+}
