@@ -1,4 +1,7 @@
 node_modules
 nbproject
+package-lock.json
 .DS_Store
 /nbproject/private/
+examples/package-lock.json
+examples/node_modules
