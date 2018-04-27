@@ -1,0 +1,8 @@
+.btn--outline {
+  &.btn {
+    background-color: transparent;
+  }
+  &.btn--primary {
+    color: #007bff;
+  }
+}

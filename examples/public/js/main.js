@@ -4,20 +4,28 @@ function isWhitelisted( url ){
   return url.substr( 0, 2 ) === "./";
 }
 
-function extractUrl( hash ){
+function parsePseudoUrl( hash ){
   const raw = hash.substr( 1 ),
-        [ url ] = raw.split( "!" );
-  return url;
+        [ url, locator ] = raw.split( "!" ),
+        file = url.split( "/" ).pop(),
+        section = file.split( "." ).shift();
+  return { url, file, section, locator };
 }
 
 function handleHashChange() {
-  const url = location.hash ? extractUrl( location.hash ) : "./page/grid.html";
+  const req = parsePseudoUrl( location.hash ),
+        url = location.hash ? req.url : "./page/grid.html";
+
   if ( !isWhitelisted( url ) ) {
     return;
   }
+
   frame.innerHTML = `<link rel="html-import" href="${url}">`;
   window.HTMLImport.importForElement( frame.querySelector( "link" ) )
     .then(() => {
+      const id = `${req.section}--${req.locator}`,
+            el = document.getElementById( id );
+      el && el.scrollIntoView && el.scrollIntoView();
     })
     .catch( e => console.error( "html-import:", e ) );
 };

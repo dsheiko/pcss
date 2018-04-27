@@ -1,11 +1,38 @@
+@import "_sm.scss";
+
 .btn {
+
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+
+  @extend .btn--sm;
+
+  border-radius: .25rem;
+  will-change: color, background-color, border-color, box-shadow;
+  transition: color .15s ease-in-out,
+    background-color .15s ease-in-out,
+    border-color .15s ease-in-out,
+    box-shadow .15s ease-in-out;
+
   &:active {
   }
-  &[disabled],
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+  
   &:disabled {
   }
 }
 
-.btn__icon {
-  
-}
+@import "_primary.scss";
+@import "_outline.scss";
+@import "_lg.scss";
